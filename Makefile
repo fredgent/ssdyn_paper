@@ -5,7 +5,7 @@ BIBTEX=bibtex
 
 default=ssdyn_apj.pdf
 
-ssdyn_apj.pdf:ssdyn_apj.tex Makefile 
+ssdyn_apj.pdf:ssdyn_apj.tex Makefile mean*.tex  
 	$(LATEX) ssdyn_apj
 	#$(BIBTEX) ssdyn_apj
 	#$(LATEX) ssdyn_apj
