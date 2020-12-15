@@ -19,6 +19,7 @@
 \usepackage{nicefrac}
 \usepackage{cancel}
 \usepackage{tabularx}
+\usepackage{upgreek}	% Url
 
 % \usepackage{fixltx2e} %to display {Figure*}'s in right order
 
@@ -47,6 +48,16 @@
 \def\rmp{{Rev.\ Mod.\ Phys.}}
 \def\sci{{Science}}
 
+\newcommand{\mathbfss}[1]{\textbf{\textsf{#1}}}
+\newcommand\ESK{E_{\rm kin}}
+\newcommand\EST{E_{\rm th}}
+\newcommand\ESN{E_{\sigma}}
+\newcommand\Ms{M_{\rm s}}
+\newcommand\Rm{{\rm Rm} }
+\newcommand\Rey{{\rm Re} }
+\newcommand\Pm{{\rm Pm} }
+\newcommand\kf{k_{\rm f} }
+\newcommand\BKM{{\sf BKMM4}}
 %
 %       UNITS
 %
@@ -79,6 +90,8 @@
   \newcommand{\lo}{l_{0}}
   \newcommand{\vect}[1]{\boldsymbol{#1}}
   \newcommand{\dd}{\mathrm{d}}
+  \newcommand{\dx}{\delta x}
+  \newcommand\SNr{\dot\sigma_{\rm sn}}
 
   % MNRAS conventions for software names
   \newcommand{\pencil}{\textsc{pencil}\xspace}
@@ -96,7 +109,6 @@ pdfauthor={
             N.~Singh, % (orcid.org/?)
           }
 }
-\bibliographystyle{hapj}
 
 % Choose favorite figures for arXiver website https://arxiver.wordpress.com/
 %@arxiver{alpha1beta1.pdf,beta_dep_uu.pdf,RM_structure_functions.pdf}
@@ -143,6 +155,113 @@ tba
 \section[]{Shock tests}
 \label{sect:shocks}
 
+%-------------------------------------------------------------------------
+\begin{figure*}
+\centering
+\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.49\textwidth]{csc_figs/B1O1qMBpower.pdf}
+\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.49\textwidth]{csc_figs/B1O1qMkpower.pdf}
+\caption{
+Compensated power spectra at $\dx=4$\,pc averaged over 5\,Myr preceding time
+and for rotation rate $\Omega$ as indicated in the legends, and with 
+shear ratio $q=1.5$ (upper) and 1 (lower) for magnetic energy (left) and
+kinetic energy (right).
+Legend labels S, M and L indicate azimuthal length $Ly=0.512,\,1.024$ and 
+1.536\,kpc, respectively. 
+\label{fig:lsd-power}
+}
+\end{figure*}
+%--------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------
+\begin{figure}
+\centering
+\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/eB-res-4eta.pdf}
+\caption{
+Magnetic energy density, $e_B$, normalised by time averaged kinetic energy 
+density, $\overline{e_K}$, at $\dx=4$\,pc with rotation rate $\Omega$ as
+indicated in the legends, and shear ratio $q=1.5$ (upper) and 1 (lower). 
+Legend labels S, M and L indicate azimuthal length $Ly=0.512,\,1.024$ and 
+1.536\,kpc, respectively. 
+\label{fig:lsd-eB}
+}
+\end{figure}
+%--------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------
+\begin{figure}
+\centering
+\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.5\textwidth]{csc_figs/av-bymzsm.pdf}
+\caption{
+Horizontally averaged azimuthal magnetic field, $B_y$, at $\dx=4$\,pc for 
+stratified ISM with rotation rate $\Omega=2\Omega_{\rm sn}$ and shear ratio
+$q=1.5$.
+The azimuthal extent of the domain $L_y=0.512$\,kpc (upper), 1.024 (centre) 
+and 1.536 (lower). 
+\label{fig:lsd-bymz}
+}
+\end{figure}
+%--------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------
+\begin{figure}
+\centering
+\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.5\textwidth]{csc_figs/av-uzmzsm.pdf}
+\caption{
+Horizontally averaged vertical velocity, $u_z$, at $\dx=4$\,pc for 
+stratified ISM with rotation rate $\Omega=2\Omega_{\rm sn}$ and shear ratio
+$q=1.5$.
+The azimuthal extent of the domain $L_y=0.512$\,kpc (upper), 1.024 (centre) 
+and 1.536 (lower). 
+\label{fig:lsd-uzmz}
+}
+\end{figure}
+%--------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------
+\begin{figure}
+\centering
+\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.5\textwidth]{csc_figs/av-ruzmzsm.pdf}
+\caption{
+Horizontally averaged vertical momentum, $m\,u_z$, at $\dx=4$\,pc for 
+stratified ISM with rotation rate $\Omega=2\Omega_{\rm sn}$ and shear ratio
+$q=1.5$.
+The azimuthal extent of the domain $L_y=0.512$\,kpc (upper), 1.024 (centre) 
+and 1.536 (lower). 
+\label{fig:lsd-ruzmz}
+}
+\end{figure}
+%--------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------
+\begin{figure}
+\centering
+\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.5\textwidth]{csc_figs/av-rhomzsm.pdf}
+\caption{
+Horizontally averaged gas number density, $n$, at $\dx=4$\,pc for 
+stratified ISM with rotation rate $\Omega=2\Omega_{\rm sn}$ and shear ratio
+$q=1.5$.
+The azimuthal extent of the domain $L_y=0.512$\,kpc (upper), 1.024 (centre) 
+and 1.536 (lower). 
+\label{fig:lsd-rhomz}
+}
+\end{figure}
+%--------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------
+\begin{figure}
+\centering
+\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.5\textwidth]{csc_figs/av-ttmzsm.pdf}
+\caption{
+Horizontally averaged gas temperature, $T$, at $\dx=4$\,pc for 
+stratified ISM with rotation rate $\Omega=2\Omega_{\rm sn}$ and shear ratio
+$q=1.5$.
+The azimuthal extent of the domain $L_y=0.512$\,kpc (upper), 1.024 (centre) 
+and 1.536 (lower). 
+\label{fig:lsd-ttmz}
+}
+\end{figure}
+%--------------------------------------------------------------------------
+
 %In all Figures\,\ref{fig:weakshock}--\ref{fig:adiabvcooling} a shock diffusion 
 %proportional to a quadratic dependence on the convergence of the flow is
 %applied for viscosity, $\nu$, and thermal diffusivity, $\chi$. 
@@ -166,6 +285,121 @@ tba
 %ensure it remains constant as resolution varies.
 %Any ideas?
 %}
+\section[]{Models}
+\label{sect:models}
+ We solve the system of non-ideal compressible MHD equations
+%-------------------------------------------------------------------------------
+  \begin{eqnarray}
+  \label{eq:mass}
+    \frac{D\rho}{Dt} &=& \fg{\rho_{\rm sn}\dot\sigma}
+    -\rho \vect\nabla \cdot \vect{u}
+    +\vect\nabla \cdot\zeta_D\vect\nabla\rho,
+  \end{eqnarray}
+%-------------------------------------------------------------------------------
+  \begin{eqnarray}
+  \label{eq:mom}
+    \rho\frac{D\vect{u}}{Dt} &=& 
+    \vect\nabla{\ESK\sigma}
+    -\rho c_{\rm s}^2\vect\nabla\left({s}/{c_{\rm p}}+\ln\rho\right)
+    +\vect{j}\times\vect{B} + \fg{\rho\vect{g}}
+    \nonumber\\
+    &+&\vect\nabla\cdot \left(2\rho\nu{\mathbfss W}\right)
+    +\rho\,\vect\nabla\left(\zeta_{\nu}\vect\nabla \cdot \vect{u} \right)
+    \nonumber\\
+    &+&\vect\nabla\cdot \left(2\rho\nu_3{\mathbfss W}^{(3)}\right)
+  {-\vect u\vect{\nabla}\cdot\left(\zeta_D\vect{\nabla}\rho\right)},
+  \end{eqnarray}
+%-------------------------------------------------------------------------------
+  \begin{eqnarray}
+  \label{eq:ent}
+    \rho T\frac{D s}{Dt} &=&
+     \EST\dot\sigma +\rho\Gamma
+    -\rho^2\Lambda +\eta\mu_0\vect{j}^2 
+    \nonumber\\
+    &+&2 \rho \nu\left|{\mathbfss W}\right|^{2}
+    +\rho\,\zeta_{\nu}\left(\vect\nabla \cdot \vect{u} \right)^2
+    \nonumber\\
+    &+&\vect\nabla\cdot\left(\zeta_\chi\rho T\vect\nabla s\right)
+    +\rho T\chi_3\vect\nabla^6 s
+    \nonumber\\
+    &-& {c_{\rm{v}}\,T \left(
+    \zeta_D\nabla^2\rho + \vect\nabla\zeta_D\cdot\vect\nabla\rho\right)},
+  \end{eqnarray}
+%-------------------------------------------------------------------------------
+  \begin{eqnarray}
+  \label{eq:ind}
+    \frac{\partial \vect{A}}{\partial t} &=&
+    \vect{u}\times\vect{B}
+    +\eta\vect\nabla^2\vect{A}
+    +\eta_3\vect\nabla^6\vect{A},
+  \end{eqnarray}
+%-------------------------------------------------------------------------------
+ with the ideal gas equation of state closing the system.
+ Most variables take their usual meanings.
+ Terms containing $\zeta_D{=2},\,\zeta_\nu{=5}$ and $\zeta{_\chi=2}$
+ {are applied to all ISM models and} resolve shock discontinuities with
+ artificial diffusion of mass, momentum, and energy proportional to shock
+ strength \citep[see][for details]{GMKSH20}.
+ Equations~\eqref{eq:mom} and \eqref{eq:ent} include terms with $\zeta_D$
+ {to} {provide momentum and energy conserving corrections for} {the}
+ {artificial mass diffusion applying in \eqref{eq:mass}.}
+ Shock diffusion is not applied to equation~\eqref{eq:ind}{, unlike} {in}
+ {\citet{Gent:2013b}.} {This avoids} {excessive magnetic dissipation in
+ shocks, where compression actually enhances it.}
+ Terms containing $\nu_3,\,\chi_3$ and $\eta_3$ apply sixth-order hyperdiffusion
+ to resolve grid-scale instabilities \citep[see, e.g.,][]{ABGS02,HB04}, {
+ with coefficients optimal for each $\dx$}.
+
+ {The simplified isothermal model considered above
+ (Sect.\,\ref{sec:ssd-tang}) solves only equations~{\eqref{eq:mass},}
+ \eqref{eq:mom} and~\eqref{eq:ind}, without the shock-dependent diffusion or
+ hyperdiffusion terms, and while setting
+ $\vect{B}=\vect\nabla\times\vect{A}+\vect{B}_{\rm imposed}$.}
+
+ {In the ISM simulations} SNe are exploded at {uniform} random positions
+ at a Poisson rate $\dot\sigma$ {scaled by} the solar neighborhood
+ value $\SNr\simeq 50\kpc^{-3}\Myr^{-1}$.
+ Explosions inject $\EST = 10^{51}\erg$ thermal energy, except in
+ dense regions, where a proportion {($<5\%$) may be} kinetic $\ESK$ 
+ \citep[see][]{GMKSH20}.
+ {Models with common $\dot\sigma$ have the same timing and location of
+ explosions.}
+ Non-adiabatic heating $\Gamma$ and cooling $\Lambda (T)$ are included
+ \citep{Gent:2013b} following \citet{Wolfire:1995} and \citet{Sarazin:1987}.
+
+
+ {Unlike past} experiments \citep{Gent:2013b,Gent:2013a,GMKSH20},
+ thermal diffusivity, $\chi$, {is omitted as} the artificial diffusivities
+ are adequate to ensure numerical stability.
+ {The} physical effects of thermal conductivity can be expected to be
+ relevant only at the unresolved or marginally resolved Field length defined
+ by \citet[][named after George Field, not the magnetic field]{BM90}.
+ {For comparison to our models with physical diffusivity and understanding
+ of the effects of purely numerical diffusivity, we also run an ideal MHD model
+ with} $\eta=0$ {and $\nu=0$.}
+
+ We determine how low a physical resistivity $\eta$ can be resolved by varying
+ it from $10^{-5}$ to $10^{-3}\kpc\kms$ (units assumed henceforth).
+ {We also test the effect of $\Pm=\nu/\eta$, varying $\nu$ with 
+ $\eta=10^{-4}$ or varying $\eta$ with $\nu=10^{-3}$.}
+ {Our direct comparison with the results of \BKM\ uses $\Pm=2.5$, apart
+ from one run using $\eta=\nu=0$.}
+ 
+\section[]{Modelling supernova explosions}
+\label{sect:SNe}
+
+Our numerical prescription for applying supernova modelling has been described
+in \citet{GSFSM13,Gent2012}.
+Revisions have been included to improve numerical stability, improve accuracy 
+of the remnant evolution within regions of high density ISM, and preserve gas
+in the disk for the duration of the simulations.
+We, therefore, take this opportunity to present a comprehensive description of
+our treatment of SNe.
+
+We implement Type II SN and Type Ic SN, which differ in our models only by the
+rate at which they explode and how their positions are vertically distributed.
+
+
 
 %-------------------------------------------------------------------------
 \begin{figure*}
@@ -221,7 +455,7 @@ ${\cal{D}}_{3}=10^{-13.1},\,10^{-11.7}$, respectively, $\eta\in[0,10^{-3.3}]$ an
 \caption{
 Effect of supernova rate, $\sigma_{\rm SN}$ [kpc$^{-3}$Myr$^{-1}$], at various
 spatial resolution. Panel (b) 4\,pc with $\sigma_{\rm SN} \in[5,502]$.
-\fg{Remember to comment that we compared constant heating vs \citet{Wolfire:1995} et al and this was not significant.}
+{Remember to comment that we compared constant heating vs \citet{Wolfire:1995} et al and this was not significant.}
 \label{fig:brms_SNrate}
 }
 \end{figure*}
@@ -366,7 +600,8 @@ resolution.
   (project number 272157) is acknowledged (FAG); 
   Support: Grand Challenge project SNDYN, CSC-IT Center for Science Ltd. (FAG); 
 %------------------------------------------------------------------------- 
-\bibliography{refs}
+\bibliographystyle{aasjournal}
+\bibliography{refs}{}
 
 \newpage 
 
