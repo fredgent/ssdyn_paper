@@ -1,196 +1,303 @@
-\documentclass[iop,apj,numberedappendix,twocolappendix]{emulateapj}
+%% using aastex version 6.3
+\documentclass[preprint2]{aastex63}
 
-\usepackage{mathptmx} % Times for text and math, but sometimes ugly math
-                      % (particularly mathcal..)
-% \usepackage{times}  % Times but only for text
-% \usepackage{apjfonts} % Old workaround that should be similar to mathptmx,
-                        % however, clashes with bm
-\usepackage[utf8]{inputenc}
+%% The default is a single spaced, 10 point font, single spaced article.
+%% There are 5 other style options available via an optional argument. They
+%% can be invoked like this:
+%%
+%% \documentclass[arguments]{aastex63}
+%% 
+%% where the layout options are:
+%%
+%%  twocolumn   : two text columns, 10 point font, single spaced article.
+%%                This is the most compact and represent the final published
+%%                derived PDF copy of the accepted manuscript from the publisher
+%%  manuscript  : one text column, 12 point font, double spaced article.
+%%  preprint    : one text column, 12 point font, single spaced article.  
+%%  preprint2   : two text columns, 12 point font, single spaced article.
+%%  modern      : a stylish, single text column, 12 point font, article with
+%% 		  wider left and right margins. This uses the Daniel
+%% 		  Foreman-Mackey and David Hogg design.
+%%  RNAAS       : Preferred style for Research Notes which are by design 
+%%                lacking an abstract and brief. DO NOT use \begin{abstract}
+%%                and \end{abstract} with this style.
+%%
+%% Note that you can submit to the AAS Journals in any of these 6 styles.
+%%
+%% There are other optional arguments one can invoke to allow other stylistic
+%% actions. The available options are:
+%%
+%%   astrosymb    : Loads Astrosymb font and define \astrocommands. 
+%%   tighten      : Makes baselineskip slightly smaller, only works with 
+%%                  the twocolumn substyle.
+%%   times        : uses times font instead of the default
+%%   linenumbers  : turn on lineno package.
+%%   trackchanges : required to see the revision mark up and print its output
+%%   longauthor   : Do not use the more compressed footnote style (default) for 
+%%                  the author/collaboration/affiliations. Instead print all
+%%                  affiliation information after each name. Creates a much 
+%%                  longer author list but may be desirable for short 
+%%                  author papers.
+%% twocolappendix : make 2 column appendix.
+%%   anonymous    : Do not show the authors, affiliations and acknowledgments 
+%%                  for dual anonymous review.
+%%
+%% these can be used in any combination, e.g.
+%%
+%% \documentclass[twocolumn,linenumbers,trackchanges]{aastex63}
+%%
+%% AASTeX v6.* now includes \hyperref support. While we have built in specific
+%% defaults into the classfile you can manually override them with the
+%% \hypersetup command. For example,
+%%
+%% \hypersetup{linkcolor=red,citecolor=green,filecolor=cyan,urlcolor=magenta}
+%%
+%% will change the color of the internal links to red, the links to the
+%% bibliography to green, the file links to cyan, and the external links to
+%% magenta. Additional information on \hyperref options can be found here:
+%% https://www.tug.org/applications/hyperref/manual.html#x1-40003
+%%
+%% Note that in v6.3 "bookmarks" has been changed to "true" in hyperref
+%% to improve the accessibility of the compiled pdf file.
+%%
+%% If you want to create your own macros, you can do so
+%% using \newcommand. Your macros should appear before
+%% the \begin{document} command.
+%%
+\usepackage{xfrac}
 \usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{booktabs}
-\usepackage{natbib}
-\usepackage{graphicx}
-\usepackage{aas_macros}
-\usepackage[usenames,dvipsnames]{color}
-\usepackage{xspace}
-\usepackage{bm}
-\usepackage{nicefrac}
-\usepackage{cancel}
-\usepackage{tabularx}
-\usepackage{upgreek}	% Url
+\usepackage{upgreek}
 
-% \usepackage{fixltx2e} %to display {Figure*}'s in right order
-
-%------------------------------------------------------------------
-%\usepackage[notcite,color]{showkeys}%prints all labels in colour or gray, convenient in drafts;
-%					%remove "notcite" to show bibliography labels too.
-\definecolor{refkey}{rgb}{1,1,1}	%white (invisible) reference keys; use (0,0,1) for blue
-\definecolor{labelkey}{rgb}{1,0,0}	%red labels keys
-%---------------------------------------------------------------------
-
-\usepackage[normalem]{ulem} %%required for various underlining styles
-\usepackage{enumitem} % control of the list indentation & vertical spacing
-                      % between the items
-\setlist{listparindent=\parindent,leftmargin=*}% indented paragraphs within
-                                               % lists,
-\usepackage{svn-multi}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\definecolor{midblue}{rgb}{0.0,0.4,0.7}
-\definecolor{midgreen}{rgb}{0.0,0.8,0.3}
-\definecolor{mypurple}{rgb}{0.8,0.2,0.8}
-\newcommand{\fg}[1]{\textcolor{midblue}{#1}}
-\newcommand{\fag}[1]{\textcolor{midgreen}{FAG: #1}}
-
-\def\an{{AN}}
-\def\rmp{{Rev.\ Mod.\ Phys.}}
-\def\sci{{Science}}
-
-\newcommand{\mathbfss}[1]{\textbf{\textsf{#1}}}
-\newcommand\ESK{E_{\rm kin}}
-\newcommand\EST{E_{\rm th}}
-\newcommand\ESN{E_{\sigma}}
-\newcommand\Ms{M_{\rm s}}
+\newcommand{\vdag}{(v)^\dagger}
+\newcommand\aastex{AAS\TeX}
+\newcommand\latex{La\TeX}
 \newcommand\Rm{{\rm Rm} }
 \newcommand\Rey{{\rm Re} }
 \newcommand\Pm{{\rm Pm} }
 \newcommand\kf{k_{\rm f} }
-\newcommand\BKM{{\sf BKMM4}}
+\newcommand\SNr{\dot\sigma_{\rm sn}}
+\newcommand\OSN{\Omega_{\rm sn}}
+\newcommand\ESK{E_{\rm kin}}
+\newcommand\EST{E_{\rm th}}
+\newcommand\ESN{E_{\sigma}}
+\newcommand\Ms{M_{\rm s}}
+\newcommand{\vect}[1]{{{\mbox{\boldmath $#1$}}}}%also makes bold Greek letters
+\newcommand{\mathbfss}[1]{\textbf{\textsf{#1}}}
+\newcommand\kpc{~ {\rm kpc}}
+\newcommand\pc{~ {\rm pc}}
+\newcommand\dx{ {\delta x}}
+\newcommand\Myr{~ {\rm Myr}}
+\newcommand\erg{~ {\rm erg}}
+\newcommand\kms{~ {\rm km~ s}^{-1}}
+\newcommand\BKM{{\color{blue}{BKMM4}}}
+
+\definecolor{midblue}{rgb}{0.0,0.4,0.7}
+\definecolor{midgreen}{rgb}{0.1,0.6,0.3}
+\definecolor{mypurple}{rgb}{0.7,0.3,0.8}
+\newcommand{\fg}[1]{\textcolor{mypurple}{#1}}
+\newcommand{\mm}[1]{\textcolor{mypurple}{#1}}
+\newcommand{\fag}[1]{\textcolor{midblue}{FAG: #1}}
+\newcommand{\ns}[1]{\textcolor{orange}{#1}}
+\newcommand{\mjk}[1]{\textcolor{red}{#1}}
+
+%% Reintroduced the \received and \accepted commands from AASTeX v5.2
+\received{October 4, 2020}
+\revised{\today}
+\accepted{}
+%% Command to document which AAS Journal the manuscript was submitted to.
+%% Adds "Submitted to " the argument.
+\submitjournal{ApJL}
+
+%% For manuscript that include authors in collaborations, AASTeX v6.3
+%% builds on the \collaboration command to allow greater freedom to 
+%% keep the traditional author+affiliation information but only show
+%% subsets. The \collaboration command now must appear AFTER the group
+%% of authors in the collaboration and it takes TWO arguments. The last
+%% is still the collaboration identifier. The text given in this
+%% argument is what will be shown in the manuscript. The first argument
+%% is the number of author above the \collaboration command to show with
+%% the collaboration text. If there are authors that are not part of any
+%% collaboration the \nocollaboration command is used. This command takes
+%% one argument which is also the number of authors above to show. A
+%% dashed line is shown to indicate no collaboration. This example manuscript
+%% shows how these commands work to display specific set of authors 
+%% on the front page.
+%%
+%% For manuscript without any need to use \collaboration the 
+%% \AuthorCollaborationLimit command from v6.2 can still be used to 
+%% show a subset of authors.
 %
-%       UNITS
+%\AuthorCollaborationLimit=2
 %
-  \newcommand{\cm}{\,{\rm cm}}
-  \newcommand{\mm}{\,{\rm mm}}
-  \newcommand{\dyn}{\,{\rm dyn}}
-  \newcommand{\erg}{\,{\rm erg}}
-  \newcommand{\g}{\,{\rm g}}
-  \newcommand{\Jy}{\,{\rm Jy}}
-  \newcommand{\Jyb}{\,{\rm Jy/beam}}
-  \newcommand{\km}{\,{\rm km}}
-  \newcommand{\kms}{\,{\rm km\,s^{-1}}}
-  \newcommand{\mJy}{\,{\rm mJy}}
-  \newcommand{\mJyb}{\,{\rm mJy/beam}}
-  \newcommand{\K}{\,{\rm K}}
-  \newcommand{\kpc}{\,{\rm kpc}}
-  \newcommand{\p}{\,{\rm pc}}
-  \newcommand{\Mpc}{\,{\rm Mpc}}
-  \newcommand{\Myr}{\,{\rm Myr}}
-  \newcommand{\Gyr}{\,{\rm Gyr}}
-  \newcommand{\mG}{\,{\rm mG}}
-  \newcommand{\mkG}{\,\mu{\rm G}}
-  \newcommand{\nG}{\,{\rm nG}}
-  \newcommand{\MHz}{\, {\rm MHz}}
-  \newcommand{\Msol}{\,{\rm M_{\sun}}}
-  \newcommand{\radm}{\,{\rm rad\,m^{-2}}}
-  \newcommand{\s}{\,{\rm s}}
-  \newcommand{\yr}{\,{\rm yr}}
+%% will only show Schwarz & Muench on the front page of the manuscript
+%% (assuming the \collaboration and \nocollaboration commands are
+%% commented out).
+%%
+%% Note that all of the author will be shown in the published article.
+%% This feature is meant to be used prior to acceptance to make the
+%% front end of a long author article more manageable. Please do not use
+%% this functionality for manuscripts with less than 20 authors. Conversely,
+%% please do use this when the number of authors exceeds 40.
+%%
+%% Use \allauthors at the manuscript end to show the full author list.
+%% This command should only be used with \AuthorCollaborationLimit is used.
 
-  \newcommand{\lo}{l_{0}}
-  \newcommand{\vect}[1]{\boldsymbol{#1}}
-  \newcommand{\dd}{\mathrm{d}}
-  \newcommand{\dx}{\delta x}
-  \newcommand\SNr{\dot\sigma_{\rm sn}}
+%% The following command can be used to set the latex table counters.  It
+%% is needed in this document because it uses a mix of latex tabular and
+%% AASTeX deluxetables.  In general it should not be needed.
+%\setcounter{table}{1}
 
-  % MNRAS conventions for software names
-  \newcommand{\pencil}{\textsc{pencil}\xspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% The following section outlines numerous optional output that
+%% can be displayed in the front matter or as running meta-data.
+%%
+%% If you wish, you may supply running head information, although
+%% this information may be modified by the editorial offices.
+\shorttitle{Fluctuating small-scale dynamo modes}
+\shortauthors{Gent et al.}
+%%
+%% You can add a light gray and diagonal water-mark to the first page 
+%% with this command:
+%% \watermark{text}
+%% where "text", e.g. DRAFT, is the text to appear.  If the text is 
+%% long you can control the water-mark size with:
+%% \setwatermarkfontsize{dimension}
+%% where dimension is any recognized LaTeX dimension, e.g. pt, in, etc.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% for the ``ArXivish'' bib version ----------------------------------
-\usepackage[breaklinks,colorlinks,
-  urlcolor=blue,citecolor=blue,linkcolor=blue,pdfborder={0 0 0.1}]{hyperref}
-% Metadata for the PDF file (will be useful in a very distant future...)
-\hypersetup{
-pdftitle={Large- and small-scale dynamo modes the supernova driven turbulence},
-pdfauthor={
-            F.~A.~Gent (orcid.org/0000-0002-1331-2260),
-            M-M.~{Mac Low}, (orcid.org/0000-0003-0064-4060)
-            M.~J.~K\"apyl\"a (orcid.org/0000-0002-9614-2200),
-            N.~Singh, % (orcid.org/?)
-          }
-}
-
-% Choose favorite figures for arXiver website https://arxiver.wordpress.com/
-%@arxiver{alpha1beta1.pdf,beta_dep_uu.pdf,RM_structure_functions.pdf}
-
-\shorttitle{Large- and small-scale dynamo modes the supernova driven turbulence}
-\shortauthors{F.~A.~Gent, M-M.~{Mac Low}, M.~J.~K\"apyl\"a, N.~Singh}
-
-% \received{2014 Month DD}
-% \accepted{2014 Month DD}
-% \published{2014 Month DD}
-% \journalinfo{The Astrophysical Journal, ddd:dd (ddpp), 2014 Month DD}
+%% This is the end of the preamble.  Indicate the beginning of the
+%% manuscript itself with \begin{document}.
 
 \begin{document}
 
+\title{Fluctuating small-scale dynamo modes in supernova driven multi-phase turbulence}
+
+%%
+%% The \author command is the same as before except it now takes an optional
+%% argument which is the 16 digit ORCID. The syntax is:
+%% \author[xxxx-xxxx-xxxx-xxxx]{Author Name}
+%%
+%%
+%% Use \affiliation for affiliation information. The old \affil is now aliased
+%% to \affiliation. AASTeX v6.3 will automatically index these in the header.
+%% When a duplicate is found its index will be the same as its previous entry.
+%%
+%% Note that \altaffilmark and \altaffiltext have been removed and thus 
+%% can not be used to document secondary affiliations. If they are used latex
+%% will issue a specific error message and quit. Please use multiple 
+%% \affiliation calls for to document more than one affiliation.
+%%
+%% The new \altaffiliation can be used to indicate some secondary information
+%% such as fellowships. This command produces a non-numeric footnote that is
+%% set away from the numeric \affiliation footnotes.  NOTE that if an
+%% \altaffiliation command is used it must come BEFORE the \affiliation call,
+%% right after the \author command, in order to place the footnotes in
+%% the proper location.
+%%
+%% Use \email to set provide email addresses. Each \email will appear on its
+%% own line so you can put multiple email address in one \email call. A new
+%% \correspondingauthor command is available in V6.3 to identify the
+%% corresponding author of the manuscript. It is the author's responsibility
+%% to make sure this name is also in the author list.
+%%
+%% While authors can be grouped inside the same \author and \affiliation
+%% commands it is better to have a single author for each. This allows for
+%% one to exploit all the new benefits and should make book-keeping easier.
+%%
+%% If done correctly the peer review system will be able to
+%% automatically put the author and affiliation information from the manuscript
+%% and save the corresponding author the trouble of entering it by hand.
+
+\correspondingauthor{Maarit K\"apyl\"a}
+\email{Email: frederick.gent@aalto.fi, mordecai@amnh.org,\\ maarit.kapyla@aalto.fi, nishant@iucaa.in}
+
+\author[0000-0002-1331-2260]{Frederick A. Gent}
+\affiliation{
+Astroinformatics, Department of Computer Science, Aalto University, P.O. Box 15400, FI-00076 Espoo, Finland
+ }
+\affiliation{
+    School of Mathematics, Statistics and Physics,
+      Newcastle University, NE1 7RU, UK 
+ }
+
+\author[0000-0003-0064-4060]{Mordecai-Mark {Mac Low}}
+\affiliation{
+  Department of Astrophysics, {79th Street at Central Park West, }American Museum of Natural History,
+  New York, NY 10024, USA
+}
+\affiliation{
+{Center for Computational Astrophysics, {162 Fifth Avenue, }Flatiron Institute, New York,
+NY 10010, USA} 
+}
+
+\author[0000-0002-9614-2200]{Maarit J. K\"apyl\"a}
+\affiliation{
+Astroinformatics, Department of Computer Science, Aalto University, P.O. Box 15400, FI-00076 Espoo, Finland
+}
+\affiliation{
+Max Planck Institute for Solar System Research, Justus-von-Liebig-Weg 3, D-37707 G\"ottingen, Germany
+}
+\affiliation{
+    Nordic Institute for Theoretical Physics,
+      Roslagstullsbacken 23, SE-106 91 Stockholm, Sweden 
+}
+
+\author[0000-0001-6097-688X]{Nishant K. Singh}
+\affiliation{
+Inter-University Centre for Astronomy \& Astrophysics, Post Bag 4, Ganeshkhind, Pune 411 007, India
+}
+\affiliation{
+Max Planck Institute for Solar System Research, Justus-von-Liebig-Weg 3, 37707 G\"ottingen, Germany
+}
+
+%% AASTeX 6.3 has the new \collaboration and \nocollaboration commands to
+%% provide the collaboration status of a group of authors. These commands 
+%% can be used either before or after the list of corresponding authors. The
+%% argument for \collaboration is the collaboration identifier. Authors are
+%% encouraged to surround collaboration identifiers with ()s. The 
+%% \nocollaboration command takes no argument and exists to indicate that
+%% the nearby authors are not part of surrounding collaborations.
+
+%% Mark off the abstract in the ``abstract'' environment. 
 \begin{abstract}
-tba
+Magnetic fields grow quickly even at early cosmological times, suggesting the
+action of a small-scale dynamo (SSD) in the interstellar medium of galaxies.
+Many studies have focused on idealized turbulent driving of the SSD. 
+Here we simulate more realistic supernova-driven turbulence to determine
+whether it can drive an SSD.
+Magnetic field growth occurring in our models appears inconsistent with simple
+tangling of magnetic fields, but consistent with SSD action, reproducing and
+confirming models by \citet{BKMM04} that did not include physical resistivity
+$\eta$.
+We vary $\eta$, as well as the numerical resolution and supernova rate,
+$\dot\sigma$, to delineate the regime in which an SSD occurs.
+For a given $\dot\sigma$ we find convergence for SSD growth rate with
+resolution of a parsec.
+For $\dot\sigma\simeq\dot\sigma_{\rm sn}$, with $\dot\sigma_{\rm sn}$ the solar
+neighborhood rate, the critical resistivity below which an SSD occurs is
+$0.005>\eta_{\rm crit}>0.001\,\rm kpc\,\rm km~ s^{-1}$, and this
+increases with the supernova rate.
+Across the modeled range of 0.5--4 pc resolution we find that for
+$\eta<\eta_{\rm crit}$, the SSD saturates at about 5\% of kinetic energy
+equipartition, independent of growth rate.
+In the range $0.2\,\dot\sigma_{\rm sn}\leq\dot\sigma\leq8\,\dot\sigma_{\rm sn}$
+growth rate increases with $\dot\sigma$.
+SSDs in the supernova-driven interstellar medium commonly exhibit erratic
+growth.
 \end{abstract}
+\keywords{dynamo --- magnetohydrodynamics (MHD) --- ISM: supernova remnants --- ISM: magnetic fields --- turbulence}
 
-\title{Large- and small-scale dynamo modes the supernova driven turbulence}
-\author{F.~A.~Gent,\altaffilmark{1}
-  M-M.~{Mac Low},\altaffilmark{2} M.~J.~K\"apyl\"a,\altaffilmark{1,3} 
-  and N.~Singh\altaffilmark{3}
-}
 
-\affil{
-$\sp{1}$ ReSoLVE Centre of Excellence, Department of Computer Science, Aalto University, PO Box 15400, FI-00076 Espoo, Finland \\
-$\sp{2}$ American Museum of Natural History, 79th Street at Central Park West, New York, NY 10024, USA\\
-$\sp{3}$ Max Planck Institute for Solar System Research, Justus-von-Liebig-Weg 3, 37707 G\"ottingen, Germany
-}
+\section{Introduction}\label{sec:intro}
+%==============================================================================
 
-\email{
-       frederick.gent@aalto.fi (FAG)
-       }
+%---------------------------------------------------------------------------
+\section[]{Shock tests}
+\label{sect:shocks}
 
-\keywords{galaxies: ISM -- ISM: kinematics and dynamics -- ISM: magnetic fields -- turbulence -- methods: statistical
-}
-
-%-------------------------------------------------------------------------
-\section{Introduction}
-\label{sect:introduction}
-tba 
-%-------------------------------------------------------------------------
-\begin{figure*}
-\centering
-\includegraphics[trim=0.2cm 1.4cm 0.5cm 0.2cm,clip=true,width=0.49\textwidth]{csc_figs/av-4pc2OloqsM-bymz.png}
-\includegraphics[trim=0.2cm 1.4cm 0.5cm 0.2cm,clip=true,width=0.49\textwidth]{csc_figs/av-4pc2OloqsMr5-bymz.png}
-\includegraphics[trim=0.2cm 0.2cm 0.5cm 0.2cm,clip=true,width=0.49\textwidth]{csc_figs/av-4pc2OloqsMr3-bymz.png}
-\includegraphics[trim=0.2cm 0.2cm 0.5cm 0.2cm,clip=true,width=0.49\textwidth]{csc_figs/av-4pc2OloqsMar-bymz.png}
-\caption{
-Horizontally-averaged azimuthal magentic field in $\dx=4$\,pc models with $L_y=1.024$\,kpc.
-\label{fig:lsd-power}
-}
-\end{figure*}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure*}
-\centering
-\includegraphics[trim=0.2cm 1.4cm 0.5cm 0.2cm,clip=true,width=0.49\textwidth]{csc_figs/av-4pc2OloqsM-rhomz.png}
-\includegraphics[trim=0.2cm 1.4cm 0.5cm 0.2cm,clip=true,width=0.49\textwidth]{csc_figs/av-4pc2OloqsMr5-rhomz.png}
-\includegraphics[trim=0.2cm 0.2cm 0.5cm 0.2cm,clip=true,width=0.49\textwidth]{csc_figs/av-4pc2OloqsMr3-rhomz.png}
-\includegraphics[trim=0.2cm 0.2cm 0.5cm 0.2cm,clip=true,width=0.49\textwidth]{csc_figs/av-4pc2OloqsMar-rhomz.png}
-\caption{
-Horizontally-averaged density in $\dx=4$\,pc models with $L_y=1.024$\,kpc.
-\label{fig:lsd-power}
-}
-\end{figure*}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure*}
-\centering
-\includegraphics[trim=0.2cm 1.4cm 0.5cm 0.2cm,clip=true,width=0.49\textwidth]{csc_figs/av-4pc2OloqsM-ruzmz.png}
-\includegraphics[trim=0.2cm 1.4cm 0.5cm 0.2cm,clip=true,width=0.49\textwidth]{csc_figs/av-4pc2OloqsMr5-ruzmz.png}
-\includegraphics[trim=0.2cm 0.2cm 0.5cm 0.2cm,clip=true,width=0.49\textwidth]{csc_figs/av-4pc2OloqsMr3-ruzmz.png}
-\includegraphics[trim=0.2cm 0.2cm 0.5cm 0.2cm,clip=true,width=0.49\textwidth]{csc_figs/av-4pc2OloqsMar-ruzmz.png}
-\caption{
-Horizontally-averaged vertical momentum in $\dx=4$\,pc models with $L_y=1.024$\,kpc.
-\label{fig:lsd-power}
-}
-\end{figure*}
-%--------------------------------------------------------------------------
+%---------------------------------------------------------------------------
 
 %-------------------------------------------------------------------------
 \begin{figure*}
@@ -199,6 +306,30 @@ Horizontally-averaged vertical momentum in $\dx=4$\,pc models with $L_y=1.024$\,
 \includegraphics[trim=0.2cm 1.4cm 0.5cm 0.2cm,clip=true,width=0.49\textwidth]{csc_figs/gvw-0.5pcPm0e-5.0.png}
 \includegraphics[trim=0.2cm 0.2cm 0.5cm 0.2cm,clip=true,width=0.49\textwidth]{csc_figs/gvw-0.5pcPm0e-4.0.png}
 \includegraphics[trim=0.2cm 0.2cm 0.5cm 0.2cm,clip=true,width=0.49\textwidth]{csc_figs/gvw-0.5pcPm0e-3.0.png}
+  \begin{picture}(0,0)(0,0)
+  %  \put(-452,544){{\sf{$\delta x=0.5$}}}
+  %  \put(-452,531){{\sf{$\dot\sigma=\frac{1}{5}\SNr$}}}
+  %  \put(-205,544){{\sf{$\delta x=1$}}}
+  %  \put(-205,531){{\sf{$\nu=10^{-3}$}}}
+  %  \put(-205,518){{\sf{$\dot\sigma=\frac{1}{5}\SNr$}}}
+  %  \put(-452,415){{\sf{$\delta x=1$}}}
+  %  \put(-452,402){{\sf{$\dot\sigma=\frac{1}{5}\SNr$}}}
+  %  \put(-205,415){{\sf{$\delta x=1$}}}
+  %  \put(-205,402){{\sf{$\eta=10^{-4}$}}}
+  %  \put(-205,389){{\sf{$\dot\sigma=\frac{1}{5}\SNr$}}}
+  %  \put(-452,260){{\sf{$\delta x=2$}}}
+  %  \put(-452,247){{\sf{$\dot\sigma=\frac{1}{5}\SNr$}}}
+  %  \put(-205,260){{\sf{$\delta x=4$}}}
+  %  \put(-205,247){{\sf{$\dot\sigma=\frac{1}{5}\SNr$}}}
+  %  \put(-452,133){{\sf{$\delta x=2$}}}
+  %  \put(-452,120){{\sf{$\dot\sigma=\SNr$}}}
+  %  \put(-205,133){{\sf{$\delta x=4$}}}
+  %  \put(-205,120){{\sf{$\dot\sigma=\SNr$}}}
+    \put(-395,205){{\sf\bf{(a)}}}
+    \put(-225,205){{\sf\bf{(b)}}}
+    \put(-395, 35){{\sf\bf{(c)}}}
+    \put(-225, 35){{\sf\bf{(d)}}}
+  \end{picture}
 \caption{
 Growth rate vs rms vorticity with volumetric mean temperature indicated by 
 color for $\dx=0.5$.
@@ -207,7 +338,6 @@ Symbols indicated in the legend apply during the time intervals listed.
 }
 \end{figure*}
 %--------------------------------------------------------------------------
-
 
 %-------------------------------------------------------------------------
 \begin{figure*}
@@ -242,180 +372,13 @@ Symbols indicated in the legend apply during the time intervals listed.
 \end{figure*}
 %--------------------------------------------------------------------------
 
+%-------------------------------------------------------------------------------
 
-%-------------------------------------------------------------------------------------------------
-\section[]{Shock tests}
-\label{sect:shocks}
-
-%-------------------------------------------------------------------------
-\begin{figure*}
-\centering
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.49\textwidth]{csc_figs/B1O1qMBpower.pdf}
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.49\textwidth]{csc_figs/B1O1qMkpower.pdf}
-\caption{
-Compensated power spectra at $\dx=4$\,pc averaged over 5\,Myr preceding time
-and for rotation rate $\Omega$ as indicated in the legends, and with 
-shear ratio $q=1.5$ (upper) and 1 (lower) for magnetic energy (left) and
-kinetic energy (right).
-Legend labels S, M and L indicate azimuthal length $Ly=0.512,\,1.024$ and 
-1.536\,kpc, respectively. 
-\label{fig:lsd-power}
-}
-\end{figure*}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure*}
-\centering
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.9\textwidth]{csc_figs/B2O1_5qL4power.pdf}
-\caption{
-Energy power spectra of $B_y$ at $\dx=4$\,pc averaged in fast Fourier transform
-along each coordinate and over 5\,Myr preceding time as indicated in the
-legends. 
-The shear ratio is $q=1.5$, where rotation is non-zero and labels S, M and L
-indicate azimuthal length $Ly=0.512,\,1.024$ and 
-1.536\,kpc, respectively.
-\label{fig:4power}
-}
-\end{figure*}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure}
-\centering
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.49\textwidth]{csc_figs/B2O1_5qLBpowery.pdf}
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.49\textwidth]{csc_figs/B2O1_5qLB2powery.pdf}
-\caption{
-Energy power spectra for (a) $B_y$ and (b) $e_B$ at $\dx=4$\,pc averaged
-over 5\,Myr preceding time and for rotation rate $\Omega$ as indicated in the
-legends, and with shear ratio $q=1.5$ where $\Omega>0$.
-Legend labels S, M and L indicate azimuthal length $Ly=0.512,\,1.024$ and 
-1.536\,kpc, respectively. 
-\label{fig:Bypower}
-}
-\end{figure}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure}
-\centering
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/eB-res-4eta.pdf}
-\caption{
-Magnetic energy density, $e_B$, normalised by time averaged kinetic energy 
-density, $\overline{e_K}$, at $\dx=4$\,pc with rotation rate $\Omega$ as
-indicated in the legends, and shear ratio $q=1.5$ (upper) and 1 (lower). 
-Legend labels S, M and L indicate azimuthal length $Ly=0.512,\,1.024$ and 
-1.536\,kpc, respectively. 
-\label{fig:lsd-eB}
-}
-\end{figure}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure}
-\centering
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.5\textwidth]{csc_figs/av-bymzsm.pdf}
-\caption{
-Horizontally averaged azimuthal magnetic field, $B_y$, at $\dx=4$\,pc for 
-stratified ISM with rotation rate $\Omega=2\Omega_{\rm sn}$ and shear ratio
-$q=1.5$.
-The azimuthal extent of the domain $L_y=0.512$\,kpc (upper), 1.024 (centre) 
-and 1.536 (lower). 
-\label{fig:lsd-bymz}
-}
-\end{figure}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure}
-\centering
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.5\textwidth]{csc_figs/av-uzmzsm.pdf}
-\caption{
-Horizontally averaged vertical velocity, $u_z$, at $\dx=4$\,pc for 
-stratified ISM with rotation rate $\Omega=2\Omega_{\rm sn}$ and shear ratio
-$q=1.5$.
-The azimuthal extent of the domain $L_y=0.512$\,kpc (upper), 1.024 (centre) 
-and 1.536 (lower). 
-\label{fig:lsd-uzmz}
-}
-\end{figure}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure}
-\centering
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.5\textwidth]{csc_figs/av-ruzmzsm.pdf}
-\caption{
-Horizontally averaged vertical momentum, $m\,u_z$, at $\dx=4$\,pc for 
-stratified ISM with rotation rate $\Omega=2\Omega_{\rm sn}$ and shear ratio
-$q=1.5$.
-The azimuthal extent of the domain $L_y=0.512$\,kpc (upper), 1.024 (centre) 
-and 1.536 (lower). 
-\label{fig:lsd-ruzmz}
-}
-\end{figure}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure}
-\centering
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.5\textwidth]{csc_figs/av-rhomzsm.pdf}
-\caption{
-Horizontally averaged gas number density, $n$, at $\dx=4$\,pc for 
-stratified ISM with rotation rate $\Omega=2\Omega_{\rm sn}$ and shear ratio
-$q=1.5$.
-The azimuthal extent of the domain $L_y=0.512$\,kpc (upper), 1.024 (centre) 
-and 1.536 (lower). 
-\label{fig:lsd-rhomz}
-}
-\end{figure}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure}
-\centering
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.5\textwidth]{csc_figs/av-ttmzsm.pdf}
-\caption{
-Horizontally averaged gas temperature, $T$, at $\dx=4$\,pc for 
-stratified ISM with rotation rate $\Omega=2\Omega_{\rm sn}$ and shear ratio
-$q=1.5$.
-The azimuthal extent of the domain $L_y=0.512$\,kpc (upper), 1.024 (centre) 
-and 1.536 (lower). 
-\label{fig:lsd-ttmz}
-}
-\end{figure}
-%--------------------------------------------------------------------------
-
-%In all Figures\,\ref{fig:weakshock}--\ref{fig:adiabvcooling} a shock diffusion 
-%proportional to a quadratic dependence on the convergence of the flow is
-%applied for viscosity, $\nu$, and thermal diffusivity, $\chi$. 
-%The shock viscosity follows \citet{SN92} and a similar prescription is
-%implemented for the divergence of the temperature gradient in the energy 
-%equation.
-%Hence, enhanced diffusion is applied proportional to  
-%$|(\mathbf{\nabla}\cdot\mathbf{u})_{-}|^2$ only where convergence
-%is non-zero.
-%Hyperdiffusion is applied in the form of upwind everywhere.
-%The coefficients applied are $\nu_{\rm shock}, \chi_{\rm shock}=2.0$ 
-%\footnote{Fred: Note $\nu_{\rm shock}\mathbf{\nabla}\cdot\mathbf{u}$ has the same dimension as the Laplacian viscosity $\nu\sim[L]^2[t]^{-1}$, but in the energy
-%equation $\chi_{\rm shock}(\mathbf{\nabla}\cdot\mathbf{u})^2$ has dimension
-%$\sim[L]^2[t]^{-2}$.
-%This requires a substantially larger coefficient, of order a few hundred,
-%for it to become dynamically effective.
-%For now I have included a further division by $\Delta x$, so that applying the
-%same value 2.0 with the current grid resolution
-%(effective $\chi_{\rm shock}/\Delta x=800$) seems to be effective.
-%However, the scaling should have dimension $[t]$ rather than $[L]^{-1}$, to
-%ensure it remains constant as resolution varies.
-%Any ideas?
-%}
-\section[]{Models}
-\label{sect:models}
- We solve the system of non-ideal compressible MHD equations
+ We solve the system of nonideal, compressible, nonisothermal MHD equations
 %-------------------------------------------------------------------------------
   \begin{eqnarray}
   \label{eq:mass}
-    \frac{D\rho}{Dt} &=& \fg{\rho_{\rm sn}\dot\sigma}
+    \frac{D\rho}{Dt} &=& 
     -\rho \vect\nabla \cdot \vect{u}
     +\vect\nabla \cdot\zeta_D\vect\nabla\rho,
   \end{eqnarray}
@@ -425,7 +388,7 @@ and 1.536 (lower).
     \rho\frac{D\vect{u}}{Dt} &=& 
     \vect\nabla{\ESK\sigma}
     -\rho c_{\rm s}^2\vect\nabla\left({s}/{c_{\rm p}}+\ln\rho\right)
-    +\vect{j}\times\vect{B} + \fg{\rho\vect{g}}
+    +\vect{j}\times\vect{B}
     \nonumber\\
     &+&\vect\nabla\cdot \left(2\rho\nu{\mathbfss W}\right)
     +\rho\,\vect\nabla\left(\zeta_{\nu}\vect\nabla \cdot \vect{u} \right)
@@ -460,117 +423,68 @@ and 1.536 (lower).
 %-------------------------------------------------------------------------------
  with the ideal gas equation of state closing the system.
  Most variables take their usual meanings.
- Terms containing $\zeta_D{=2},\,\zeta_\nu{=5}$ and $\zeta{_\chi=2}$
+ Terms containing $\zeta_D{=2},\,\zeta_\nu=5$ and $\zeta{_\chi=2}$
  {are applied to all ISM models and} resolve shock discontinuities with
  artificial diffusion of mass, momentum, and energy proportional to shock
  strength \citep[see][for details]{GMKSH20}.
- Equations~\eqref{eq:mom} and \eqref{eq:ent} include terms with $\zeta_D$
+ {Equations~\eqref{eq:mom} and \eqref{eq:ent} include terms with $\zeta_D$}
  {to} {provide momentum and energy conserving corrections for} {the}
- {artificial mass diffusion applying in \eqref{eq:mass}.}
- Shock diffusion is not applied to equation~\eqref{eq:ind}{, unlike} {in}
- {\citet{Gent:2013b}.} {This avoids} {excessive magnetic dissipation in
- shocks, where compression actually enhances it.}
+ {artificial mass diffusion applying in Equation~\eqref{eq:mass}.}
+ {In previous work \citet{Gent:2013b} we have used a formalism that
+ included artificial diffusion in vector potential at shocks.
+ %Shock diffusion is not applied to Equation~\eqref{eq:ind}{, unlike} {in}
+ %{\citet{Gent:2013b}.}
+ %This avoids {excessive magnetic dissipation in
+ %  shocks, where compression actually enhances it.}
+ In Figure~\ref{fig:eb-slice} we show comparative slices of the magnetic
+ energy and gas density with and without resistive shock diffusion
+ $\zeta_\eta$.
+ With $\zeta_\eta>0$ (Fig.~\ref{fig:eb-slice} b) magnetic energy is reduced in the remnant shell relative to Figure~\ref{fig:eb-slice} a, where compression actually enhances it.}
+ Since the magnetic field is well resolved in either case, as also
+ shown by the magnetic energy spectra below, and the simulation is
+ numerically stable without it, this extra artificial
+ diffusion is unnecessary.
+
+ In both models a concentration of magnetic energy, marked with $+$ in
+ Figure\,\ref{fig:eb-slice}, has below average gas density.
+ {This snapshot reflects the overall behavior of the system, in which
+ magnetic field amplification also occurs independently of shock compression.
+ As Figure\,\ref{fig:eb-slice} shows, SN shock fronts do compress and amplify
+ the magnetic field, resulting in strong local and instantaneous correlation
+ of the field and density.
+ However, on global and long-term scales, this is not the dominant mechanism
+ for the dynamo, which operates just as effectively in the nonshocked, more
+ diffuse regions, as is also indicated by this figure.
+ This is based on the amplification factor due to compression being estimated
+ $\lesssim2$, taken as density fluctuations to power $4/3$, while the magnetic
+ energy is amplified by 4--6 orders of magnitude.}
+
+  {Unlike past} experiments \citep{Gent:2013b,Gent:2013a,GMKSH20},
+ thermal diffusivity $\chi$ is {also} omitted, as the artificial diffusivities
+ {chosen} are adequate to ensure numerical stability.
+ {The} physical effects of thermal conductivity can be expected to be
+ relevant only at the unresolved or marginally resolved Field length defined
+ by \citet[][named after George Field, not the magnetic field]{BM90}.
  Terms containing $\nu_3,\,\chi_3$ and $\eta_3$ apply sixth-order hyperdiffusion
  to resolve grid-scale instabilities \citep[see, e.g.,][]{ABGS02,HB04}, {
- with coefficients optimal for each $\dx$}.
+ with mesh Reynolds number set to be $\simeq1$ for each $\dx$}.
 
- {The simplified isothermal model considered above
- (Sect.\,\ref{sec:ssd-tang}) solves only equations~{\eqref{eq:mass},}
- \eqref{eq:mom} and~\eqref{eq:ind}, without the shock-dependent diffusion or
+ The simplified isothermal model considered in
+Sect.\,\ref{sec:ssd-tang} solves only Equations~\eqref{eq:mass},
+ \eqref{eq:mom}, and~\eqref{eq:ind}, without the shock-dependent diffusion or
  hyperdiffusion terms, and while setting
- $\vect{B}=\vect\nabla\times\vect{A}+\vect{B}_{\rm imposed}$.}
+ $\vect{B}=\vect\nabla\times\vect{A}+\vect{B}_{\rm imposed}$.
 
  {In the ISM simulations} SNe are exploded at {uniform} random positions
  at a Poisson rate $\dot\sigma$ {scaled by} the solar neighborhood
  value $\SNr\simeq 50\kpc^{-3}\Myr^{-1}$.
  Explosions inject $\EST = 10^{51}\erg$ thermal energy, except in
- dense regions, where a proportion {($<5\%$) may be} kinetic $\ESK$ 
+ dense regions, where a proportion ($<5\%$) may be kinetic $\ESK$ 
  \citep[see][]{GMKSH20}.
  {Models with common $\dot\sigma$ have the same timing and location of
  explosions.}
- Non-adiabatic heating $\Gamma$ and cooling $\Lambda (T)$ are included
+ Nonadiabatic heating $\Gamma$ and cooling $\Lambda (T)$ are included
  \citep{Gent:2013b} following \citet{Wolfire:1995} and \citet{Sarazin:1987}.
-\cite{HMGI18} increased rate of heating.
-
-
- {Unlike past} experiments \citep{Gent:2013b,Gent:2013a,GMKSH20},
- thermal diffusivity, $\chi$, {is omitted as} the artificial diffusivities
- are adequate to ensure numerical stability.
- {The} physical effects of thermal conductivity can be expected to be
- relevant only at the unresolved or marginally resolved Field length defined
- by \citet[][named after George Field, not the magnetic field]{BM90}.
- {For comparison to our models with physical diffusivity and understanding
- of the effects of purely numerical diffusivity, we also run an ideal MHD model
- with} $\eta=0$ {and $\nu=0$.}
-
- We determine how low a physical resistivity $\eta$ can be resolved by varying
- it from $10^{-5}$ to $10^{-3}\kpc\kms$ (units assumed henceforth).
- {We also test the effect of $\Pm=\nu/\eta$, varying $\nu$ with 
- $\eta=10^{-4}$ or varying $\eta$ with $\nu=10^{-3}$.}
- {Our direct comparison with the results of \BKM\ uses $\Pm=2.5$, apart
- from one run using $\eta=\nu=0$.}
- 
-\section[]{Modelling supernova explosions}
-\label{sect:SNe}
-
-Our numerical prescription for applying supernova modelling has been described
-in \citet{GSFSM13,Gent2012}.
-Revisions have been included to improve numerical stability, improve accuracy 
-of the remnant evolution within regions of high density ISM, and preserve gas
-in the disk for the duration of the simulations.
-We, therefore, take this opportunity to present a comprehensive description of
-our treatment of SNe.
-
-We implement Type II SN and Type Ic SN, which differ in our models only by the
-rate at which they explode and how their positions are vertically distributed.
-
-
-
-%-------------------------------------------------------------------------
-\begin{figure*}
-\centering
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.47\textwidth]{csc_figs/eB-res-4eta.png}
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.47\textwidth]{csc_figs/1pc-eB-nu.png}
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.47\textwidth]{csc_figs/2pc-eB-nu.png}
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.47\textwidth]{csc_figs/4pc-eB-nu.png}
-\caption{
-Panel {\bf(a)}: for resolution of 0.5, 1, 2 and 4\,pc the magnetic energy for
-models with hyper diffusion coefficients 
-${\cal{D}}_{3}=10^{-15.5},\,10^{-14.5},\,10^{-13.1}$ and $10^{-11.7}$,
-respectively.
-For resolution 1, 2  and 4\,pc, the respective ${\cal{D}}_{3}$ together with 
-$\eta\in[0,10^{-2.3}]$ and $\nu=0$, in panels {\bf(b)} to {\bf(d)},
-respectively.
-${\cal{D}}_{3}=[\nu_3,\chi_3,\eta_3]$ and ${\cal{D}}_1=[\nu,\eta]$.
-\label{fig:brms}
-}
-\end{figure*}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure*}
-\centering
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.47\textwidth]{csc_figs/eB-res-zoom.png}
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.47\textwidth]{csc_figs/eB-res-2xzoom.png}
-\caption{
-Zoomed in time intervals of Figure\,\ref{fig:brms} panel\,{\bf(a)} of the magnetic energy growth rates for various spatial resolution.  
-\label{fig:brms_res_zoom}
-}
-\end{figure*}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure*}
-\centering
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.47\textwidth]{csc_figs/2pc-eB-zoom.png}
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.47\textwidth]{csc_figs/4pc-eB-zoom.png}
-\caption{
-Zoom in at 2\,pc and 4\,pc resolution of the magnetic energy growth rates with  
-${\cal{D}}_{3}=10^{-13.1},\,10^{-11.7}$, respectively, $\eta\in[0,10^{-3.3}]$ and $\nu=0$.
-\label{fig:brms_zoom}
-}
-\end{figure*}
-%--------------------------------------------------------------------------
 
 %-------------------------------------------------------------------------
 \begin{figure*}
@@ -586,156 +500,22 @@ spatial resolution. Panel (b) 4\,pc with $\sigma_{\rm SN} \in[5,502]$.
 \end{figure*}
 %-------------------------------------------------------------------------
 
-%\begin{table*}
-%\begin{tabular}{lcccccccc}
-%\input{tables/4pc_01SNseedstats}
-%\input{tables/4pc_2SNseedstats}
-%\input{tables/4pc_5SNseedstats}
-%\input{tables/4pc_10SNseedstats}
-%\end{tabular}
-%\end{table*}
-%
-%%--------------------------------------------------------------------------
-%
-%\begin{table*}
-%\begin{tabular}{lcccccccc}
-%\input{tables/4pc_h5seedstats}
-%\input{tables/4pcPm0e-5.0stats}
-%\input{tables/4pcPm0e-4.0stats}
-%\input{tables/4pcPm0e-3.7stats}
-%\input{tables/4pcPm0e-3.3stats}
-%\input{tables/4pcPm0e-3.0stats}
-%\input{tables/4pcPm0e-2.3stats}
-%\end{tabular}
-%\end{table*}
-%%-------------------------------------------------------------------------
-%
-%%-------------------------------------------------------------------------
-%
-%\begin{table*}
-%\begin{tabular}{lcccccccc}
-%\input{tables/4pcPm0e-0_02SNstats}
-%\input{tables/4pcPm0e-4_02SNstats}
-%\input{tables/4pcPm0e-3_02SNstats}
-%\end{tabular}
-%\end{table*}
-%
-%%--------------------------------------------------------------------------
-%
-%\begin{table*}
-%\begin{tabular}{lcccccccc}
-%\input{tables/2pc_h5seedstats}
-%\input{tables/2pcPm0e-5.0stats}
-%\input{tables/2pcPm0e-5.0stats}
-%\input{tables/2pcPm0e-4.0stats}
-%\input{tables/2pcPm0e-3.3stats}
-%\input{tables/2pcPm0e-3.0stats}
-%\end{tabular}
-%\end{table*}
-%%-------------------------------------------------------------------------
-%\begin{table*}
-%\begin{tabular}{lcccccccc}
-%\input{tables/2pcPm0e-0_02SNstats}
-%\input{tables/2pcPm0e-4_02SNstats}
-%\input{tables/2pcPm0e-3_02SNstats}
-%\end{tabular}
-%\end{table*}
-%%-------------------------------------------------------------------------
-%
-%\begin{table*}
-%\begin{tabular}{lcccccccc}
-%\input{tables/1pcPm0e-0.0stats}
-%\input{tables/1pcPm0e-5.0stats}
-%\input{tables/1pcPm0e-4.0stats}
-%\input{tables/1pcPm0e-3.0stats}
-%\end{tabular}
-%\end{table*}
-%
-%%-------------------------------------------------------------------------
-%
-%\begin{table*}
-%\begin{tabular}{lcccccccc}
-%\input{tables/0.5pcPm0e-0.0stats}
-%\input{tables/0.5pcPm0e-5.0stats}
-%\input{tables/0.5pcPm0e-4.0stats}
-%\input{tables/0.5pcPm0e-3.0stats}
-%\end{tabular}
-%\end{table*}
-%%-------------------------------------------------------------------------
-
-%\begin{figure*}
-%%\centering
-%\includegraphics[trim=0cm 0cm 0cm 0cm,clip=true,width=1.\textwidth]{csc_figs/sim_higammas.png}
-%\includegraphics[trim=0cm 0cm 0cm 0cm,clip=true,width=1.\textwidth]{csc_figs/sim_gammas.png}
-%\caption{
-%Growth rate dependence on fractional volume of hot gas, $f_H$, magnetic Reynolds
-%number in the hot and warm gas, Rm$_{\rm H}$ and Rm$_{\rm W}$, respectively, 
-%Ma$_{\rm rms}$,  $u_{\rm rms}$ and resolution.
-%Top panels show models during growth rates, $\gamma>100$\,Gyr$^{-1}$ and 
-%bottom panels for lower growth rates.
-%\label{fig:sim_gamma}
-%}
-%\end{figure*}
-%%--------------------------------------------------------------------------
-
+%-------------------------------------------------------------------------
+\begin{figure}
+\centering
+\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/eB-res-4eta.pdf}
+\caption{
+Magnetic energy density, $e_B$, normalised by time averaged kinetic energy 
+density, $\overline{e_K}$, at $\dx=4$\,pc with rotation rate $\Omega$ as
+indicated in the legends, and shear ratio $q=1.5$ (upper) and 1 (lower). 
+Legend labels S, M and L indicate azimuthal length $Ly=0.512,\,1.024$ and 
+1.536\,kpc, respectively. 
+\label{fig:lsd-eB}
+}
+\end{figure}
 %--------------------------------------------------------------------------
 
-For the models with 4 parsec resolution the mimimum coefficient for the 
-6th order hyper diffusion is $2\cdot10^{-12}\,{\rm kpc\,km\,s}^{-1}$ to
-resolve the smallest scales of the magnetic field.
-The simulation with only hyper diffusion applying for the momentum, energy and
-induction equations and shock capturing diffusivity for the momentum, energy and
-continuity equations is continued with various constant $\nu=\eta$.
-${\rm Pm}=1$ is tested first, to identify a minimum below which only the
-hyper diffusion is effective.
-
-For ${\rm Pm}>1$ tests resulted in inconsistent dynamo amplification.
-Also, a set of solutions for ${\rm Pm}=1$, where the SN were applied 
-independently yielded inconssitent growth rates, and the models plotted here
-took applied the same incidence and location of SN as in the original 
-simulation.
-In the independent set of runs, only $\nu=5\cdot10^{-5}$ yielded a growth rate
-similar to the original simulation, while all others exhibited stronger
-amplification than obtained here.
-Perhaps the increased strength of the turbulence due to the random effects of
-the SN forcing, explains the enhanced growth rate for the magnetic field.
-
-The model with the fastest growth for 4 parsec resolution has a much hotter 
-domain, with the cool dense region confined to a small clump, compared to the
-other models.
-The increased turbulence may be a physical perturbation due to the random 
-forcing, but coudl also be overheating due to numerical errors at this coarse
-resolution. 
-The 2 parsec resolution runs, give a more consistent response even when 
-different Prandtl numbers apply.
-The ${\rm Pm}=1$ runs are still running, but an example with the mixed Pm is
-included.
-The slices for the 2 pc resolution are obtained with ${\cal D}_3=6.25\cdot
-10^{-14}$, which appears to be slightly under resolving the magnetic
-field in the high Pm models. So, the subsequent
-runs are applying ${\cal D}_3=8.25\cdot
-10^{-14}$, allowing for the velocity extrema to have higher magnitudes
-than at 4 pc
-resolution.
-
-%-----------------------------------------------------------------------------
-\section*{Acknowledgements}
-%-----------------------------------------------------------------------------
-  Financial support from the Academy of Finland Centre of Excellence ReSoLVE 
-  (project number 272157) is acknowledged (FAG); 
-  Support: Grand Challenge project SNDYN, CSC-IT Center for Science Ltd. (FAG); 
 %------------------------------------------------------------------------- 
-\bibliographystyle{aasjournal}
-\bibliography{refs}{}
-
-\newpage 
-
-%-------------------------------------------------------------------------
-\appendix
-%-------------------------------------------------------------------------
-
-\section*{simulation notes}
-
 \begin{table*}
 \caption{\texttt{*} indicates simulation data lost}
 \begin{tabular}{lccccccc}
@@ -779,122 +559,16 @@ Model & resolution & $\eta_3,\nu_3$ & $\nu$ & $\eta$ & $\sigma_{\rm SN}$ & \\
 \end{tabular}
 \end{table*}
 
-Next meeting mon 24/2/2020 18:30 (FI)
-\begin{itemize} 
-\item compare thermal runaway with Li \& Ostriker 
-\item check $\gamma$ for high $\sigma_{\rm sn}$ at 4pc resolution
-\item check $\gamma$ for low $\sigma_{\rm sn}$ at high resolution
-\item use $\nu = 0$ to avoid changes to flow dynamics
-\item check $B_0\exp(\gamma t): \gamma\propto R_{\rm m}$
-\end{itemize} 
+%-------------------------------------------------------------------------------
+\section{Results} \label{sec:results}
+%-------------------------------------------------------------------------------
 
-Next meeting mon 2/3/2020 17:00 (FI)
-\begin{itemize} 
-\item compare varying eta across resolution for physical Rm 
-\item is critical value of $10^{-4}, 10^{-3}$ repeated at high resolution
-\item compare separately $\gamma$ for thermal runaway vs non-thermal runaway
-\item $R_{\rm m}$ within 10 zones applies $<10^{-5}$ from hyper diffusion
-\end{itemize} 
-
-Next meeting Wed 11/3/2020 16:00 (FI)
-\begin{itemize} 
-\item 2D histograms/pdfs of entropy vs magnetic energy
-\item include spectra during growth with time evolution (hot vs cold)
-\item use auto-correlation functions to determine typical velocity per phase
-\item see Chira et al / Mac Low
-\item test $B_0\exp(\gamma t): \gamma\propto R_{\rm m}$
-\end{itemize} 
-
-Next meeting Tue 17/3/2020 16:00 (FI)
-\begin{itemize} 
-\item 2D histograms/pdfs of entropy vs magnetic energy
-\item include spectra during growth with time evolution (hot vs cold)
-\item use auto-correlation functions to determine typical velocity per phase
-\item see Chira et al / Mac Low
-\item test $B_0\exp(\gamma t): \gamma\propto R_{\rm m}$
-\item fix Pm calculation nu/eta not Rm/Re
-\item Compare hot fraction and Rm between growth rate transition in 1pc and 2pc runs
-\item Confirm whether numerical resistivity is not dominant at 1pc and 2pc runs for $\eta=10^{-4}$
-\end{itemize} 
-
-Next meeting Tue 24/3/2020 16:00 (FI)
-\begin{itemize} 
-\item include spectra during growth with time evolution (hot vs cold)
-\item use auto-correlation functions to determine typical velocity per phase
-\item see Chira et al / Mac Low
-\item test $B_0\exp(\gamma t): \gamma\propto R_{\rm m}$
-\item Compare hot fraction and Rm between growth rate transition in 1pc and 2pc runs
-\item Confirm whether numerical resistivity is not dominant at 1pc and 2pc runs for $\eta=10^{-4}$
-\item 
-\end{itemize} 
-
-Next meeting Tue 31/3/2020 17:00 (FI)
-\begin{itemize} 
-\item use auto-correlation functions to determine typical velocity per phase
-\item see Chira et al / Mac Low
-\item test $B_0\exp(\gamma t): \gamma\propto R_{\rm m}$
-\item Confirm whether numerical resistivity is not dominant at 1pc and 2pc runs for $\eta=10^{-4}$
-\item Run 2 and 4 pc with $\sigma_{\rm sn}=10$ and $\eta=10^{-3}$ for comparison
-\item Investigate behaviour in hot gas for fast runs -- is there a slow
-dynamo in warm gas and fast dynamo in hot gas
-\item Scale of dynamo forcing may not be the scale of the SN bubbles? Peak of magnetic energy spectrum may be the relevant scale
-\item Compare peak $k$ of $P_B(k)$, is $\eta\propto\ell^2$?
-\item $k^{3/2}$ not obeyed at low $k$ - does this correspond to bubble size? Auto-correlation analysis to compare $\ell$ with bubble size $L_{\rm SN}$ and $k$-space.
-\item At low Ma forcing scale determines dynamo Rm, while for high Ma does
-Rm scale match $P_B(k)$ peak?
-\item start experiments with explicit viscosity.
-\end{itemize} 
-
-Next meeting Tue 7/4/2020 17:00 (FI)
-\begin{itemize} 
-\item apply Helmholtz decomposition to the total flow. Compare vorticity in hot
-phase prior to and during the dynamo epoch. Is there a jump in vorticity in the
-hot gas? How is this evolving in the warm gas related to the dynamo state? 
-Vorticity has been demonstrated to strongly affect SSD in other systems.
-\item Investigate behaviour in hot gas for fast runs -- is there a slow
-dynamo in warm gas and fast dynamo in hot gas. Plot evolution of magentic energy
-density separately for the hot gas and warm gas.
-\item use auto-correlation functions to determine typical velocity per phase.
-Does James' method account for the discontinuous volume of the hot gas to
-recover the relevant correlation length by phase? Check references/Anvar?
-Divide out volume correlation function from correlation function of phase?
-\item $k^{3/2}$ not obeyed at low $k$ - does this correspond to bubble size?
-Auto-correlation analysis to compare $\ell$ with bubble size $L_{\rm SN}$
-and $k$-space.
-Power laws fit well for magnetic but not kinetic.
-Is this due to two dynamos?
-Separate hot amd warm gas to investigate spectra and auto-correlation.
-\item see Chira et al / Mac Low
-\item test $B_0\exp(\gamma t): \gamma\propto R_{\rm m}$
-\item Confirm whether numerical resistivity is not dominant at 1pc and 2pc runs for $\eta=10^{-4}$
-\item Scale of dynamo forcing may not be the scale of the SN bubbles? Peak of magnetic energy spectrum may be the relevant scale
-\item Compare peak $k$ of $P_B(k)$, is $\eta\propto\ell^2$?
-\item At low Ma forcing scale determines dynamo Rm, while for high Ma does
-Rm scale match $P_B(k)$ peak?
-\item start experiments with explicit viscosity.
-\end{itemize} 
-
-Update 19th May 2020 - summary of hypotheses
-\begin{itemize}
-\item Do the kinetic power spectra follow 5/3 power law? 
-\item correlation functions - divide out corr function by volume to obtain phase?
-\item Relation between Pm and Rm is counter intuitive, what about the differences in length scale between the ISM phases?
-\item in the saturated state the kinetic energy matters, but in the kinematic phase purely $u^2$ may be significant even for the hot gas.
-\item Is there a change in the energy at the point where the hot phase starts growing 
-\item decompose the Mach number by phase to indicate level of compressibility.
-\item decompose magnetic energy by phase
-\item include error bars for variance of orthogonality by point
-\item what is the error in div/curl
-\item apply test flows to Helmholtz decomposition
-\item smmothing of flow did not resolve discrepencies.
-\item Is warm $e_B$ growth accummulation from hot dynamo? - delay in time? - growth of warm Ma during dynamo?
-\item Drop in hot Ma during dynamo 0.04 Gyr 1pcPm0e-3. 
-\item 1pcPm0e-4 Check if sudden heating coincides with growth 0.02 -0.04 vs 0.04-0.045
-\item Is energy growing in warm or hot ISM?
-\item check Rm for a particular location and check Rm is correct.
-\end{itemize}
-
-
+%-------------------------------------------------------------------------------
+\subsection{{Resolution and convergence}} \label{sec:conv}
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\subsection{{Effective resistivity and Prandtl number}} \label{sec:eta}
+%-------------------------------------------------------------------------------
 %------------------------------------------------------------------------
 \begin{figure*}
 \centering
@@ -965,322 +639,8 @@ kinematic dynamo state.
 \label{fig:4pcUB}
 }
 \end{figure*}
+
 %--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure*}
-\centering
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/2pcPm0e-3_02SNBpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/2pcPm0e-3_02SNkpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/2pcPm0e-4_02SNBpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/2pcPm0e-4_02SNkpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/2pcPm0e-0_02SNBpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/2pcPm0e-0_02SNkpower.png}
-\caption{
-Magnetic (left) and kinetic (right) energy spectra for 2pc resolution runs 
-during the kinematic growth phases with ${\cal D}_3$ 
-coefficients as specified in Figure\,\ref{fig:brms}, and $\eta\in[0,10^{-3}]$.
-$\sigma_{\rm SN}=10$.
-\label{fig:2spectra10SN}
-}
-\end{figure*}
-%--------------------------------------------------------------------------
-
-
-%-------------------------------------------------------------------------
-\begin{figure*}
-\centering
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pcPm0e-3_02SNBpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pcPm0e-3_02SNkpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pcPm0e-4_02SNBpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pcPm0e-4_02SNkpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pcPm0e-0_02SNBpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pcPm0e-0_02SNkpower.png}
-\caption{
-Magnetic (left) and kinetic (right) energy spectra for 4pc resolution runs 
-during the kinematic growth phases with ${\cal D}_3$ 
-coefficients as specified in Figure\,\ref{fig:brms}, and $\eta\in[0,10^{-3}]$.
-$\sigma_{\rm SN}=10$.
-\label{fig:4spectra10SN}
-}
-\end{figure*}
-%--------------------------------------------------------------------------
-
-
-%-------------------------------------------------------------------------
-\begin{figure*}
-\centering
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/05pcPm0e-4_0Bpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/05pcPm0e-4_0kpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/1pcPm0e-4_0Bpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/1pcPm0e-4_0kpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/2pcPm0e-4_0Bpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/2pcPm0e-4_0kpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pcPm0e-4_0Bpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pcPm0e-4_0kpower.png}
-\caption{
-Magnetic (left) and kinetic (right) energy spectra for all resolution runs 
-during the kinematic growth phases with ${\cal D}_3$ 
-coefficients as specified in Figure\,\ref{fig:brms}, and $\eta=10^{-4}$.
-$\sigma_{\rm SN}=10$ at higher resolution and $\sigma_{\rm SN}=50$ for lower
-resolution.
-\label{fig:4spectraRm}
-}
-\end{figure*}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure*}
-\centering
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/05pcPm0e-3_0Bpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/05pcPm0e-3_0kpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/05pcPm0e-3_3Bpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/05pcPm0e-3_3kpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/05pcPm0e-4_0Bpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/05pcPm0e-4_0kpower.png}
-\caption{
-Magnetic (left) and kinetic (right) energy spectra for 0.5\,pc resolution runs 
-during the kinematic growth phases with ${\cal D}_3$ 
-coefficients as specified in Figure\,\ref{fig:brms}, and $\eta\in[10^{-3},10^{-4}]$. $\sigma_{\rm SN}=10$.
-\label{fig:4spectraRm}
-}
-\end{figure*}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure*}
-\centering
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/1pcPm0e-3_0Bpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/1pcPm0e-3_0kpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/1pcPm0e-4_0Bpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/1pcPm0e-4_0kpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/1pcPm0e-5_0Bpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/1pcPm0e-5_0kpower.png}
-\caption{
-Magnetic (left) and kinetic (right) energy spectra for 1\,pc resolution runs 
-during the kinematic growth phases with ${\cal D}_3$ 
-coefficients as specified in Figure\,\ref{fig:brms}, and $\eta\in[10^{-3},10^{-5}]$. $\sigma_{\rm SN}=10$.
-\label{fig:4spectraRm}
-}
-\end{figure*}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure*}
-\centering
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/2pcPm0e-3_0Bpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/2pcPm0e-3_0kpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/2pcPm0e-3_aBpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/2pcPm0e-3_akpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/2pcPm0e-3_3Bpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/2pcPm0e-3_3kpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/2pcPm0e-3_bBpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/2pcPm0e-3_bkpower.png}
-\caption{
-Magnetic (left) and kinetic (right) energy spectra for 2\,pc resolution runs 
-showing change in Kolmogorov scaling between
- the low and high kinematic growth phases with ${\cal D}_3$ 
-coefficients as specified in Figure\,\ref{fig:brms}, and $\eta\in[5\cdot10^{-3},10^{-3}]$. $\sigma_{\rm SN}=50$.
-\label{fig:4spectraRm}
-}
-\end{figure*}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure*}
-\centering
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pcPm0e-2_3Bpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pcPm0e-2_3kpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pcPm0e-3_0Bpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pcPm0e-3_0kpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pcPm0e-4_0Bpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pcPm0e-4_0kpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pcPm0e-5_0Bpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pcPm0e-5_0kpower.png}
-\caption{
-Magnetic (left) and kinetic (right) energy spectra for 4\,pc resolution runs 
-during the kinematic growth phases with ${\cal D}_3$ 
-coefficients as specified in Figure\,\ref{fig:brms}, and $\eta\in[5\cdot10^{-3},10^{-5}]$. $\sigma_{\rm SN}=50$.
-\label{fig:4spectraRm}
-}
-\end{figure*}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure*}
-\centering
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pc_01SNseedBpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pc_01SNseedkpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pc_h5seedBpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pc_h5seedkpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pc_2SNseedBpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pc_2SNseedkpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pc_5SNseedBpower.png}
-\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.45\textwidth]{csc_figs/4pc_5SNseedkpower.png}
-\caption{
-Magnetic (left) and kinetic (right) energy spectra for 4\,pc resolution runs 
-during the kinematic growth phases with ${\cal D}_3$ 
-coefficients as specified in Figure\,\ref{fig:brms}, and $\eta=0$.
- $\sigma_{\rm SN}\in[5,250]$.
-\label{fig:4spectraSN}
-}
-\end{figure*}
-%--------------------------------------------------------------------------
-
-%%-------------------------------------------------------------------------
-%\begin{figure*}
-%\centering
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/1pcPm0e-3_0102D.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/1pcPm0e-3_a102D.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/1pcPm0e-4_0102D.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/1pcPm0e-5_0102D.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/1pc_h5seed102D.png}
-%\caption{
-%Total volume probability density distributions of ISM by Rm and temperature
-%during the kinematic phase for resolution of 1\,pc with hyper diffusion
-%coefficients as specified in Figure\,\ref{fig:brms}, and $\eta\in[10^{-3},0]$.
-% $\sigma_{\rm SN}=10$, except last panel with $\sigma_{\rm SN}=50$.
-%\label{fig:12D}
-%}
-%\end{figure*}
-%%--------------------------------------------------------------------------
-
-%%-------------------------------------------------------------------------
-%\begin{figure*}
-%\centering
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/2pcPm0e-3_0102D.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/2pcPm0e-3_a102D.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/2pcPm0e-3_3102D.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/2pcPm0e-3_b102D.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/2pcPm0e-4_0102D.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/2pcPm0e-5_0102D.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/2pcPm0e-6_0102D.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/2pc_h5seed102D.png}
-%\caption{
-%Total volume probability density distributions of ISM by Rm and temperature
-%during the kinematic phase for resolution of 2\,pc with hyper diffusion
-%coefficients as specified in Figure\,\ref{fig:brms}, and $\eta\in[10^{-3},0]$.
-% $\sigma_{\rm SN}=50$.
-%\label{fig:22D}
-%}
-%\end{figure*}
-%%--------------------------------------------------------------------------
-
-
-
-%%-------------------------------------------------------------------------
-%\begin{figure*}
-%\centering
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/4pcPm0e-2_3202D.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/4pcPm0e-3_0362D.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/4pcPm0e-3_3182D.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/4pcPm0e-3_7182D.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/4pcPm0e-4_0272D.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/4pcPm0e-5_0302D.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/4pcPm0e-6_0332D.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/4pc_h5seed332D.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/4pc_5SNseed082D.png}
-%\caption{
-%Total volume probability density distributions of ISM by Rm and temperature
-%during the kinematic phase for resolution of 4\,pc with hyper diffusion
-%coefficients as specified in Figure\,\ref{fig:brms}, and $\eta\in[5\cdot10^{-3},0]$.
-% $\sigma_{\rm SN}=50$, except last panel with $\sigma_{\rm SN}=250$.
-%\label{fig:42D}
-%}
-%\end{figure*}
-%%--------------------------------------------------------------------------
-
-%%-------------------------------------------------------------------------
-%\begin{figure*}
-%\centering
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,height=0.3\textwidth]{csc_figs/histRm05pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,height=0.3\textwidth]{csc_figs/hfrac05pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,height=0.3\textwidth]{csc_figs/Rmfrac05pcPm0e-4_0.png}
-%\caption{
-%Resolution 0.5\,pc: Upper panels show PDFs for split by warm and hot phases
-%of the Rm and Pm during the kinematic phase and the lower panels show the
-%magnetic energy, with a fit for the growth rate during the kinematic phase
-%and fractional volume of the hot gas (left) and mean Rm in the hot and 
-%warm phases for the model with $\eta=10^{-4}$.
-%\label{fig:histRm05_4}
-%}
-%\end{figure*}
-%%--------------------------------------------------------------------------
-%
-%%-------------------------------------------------------------------------
-%\begin{figure*}
-%\centering
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,height=0.3\textwidth]{csc_figs/histRm05pcPm0e-3_0.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,height=0.3\textwidth]{csc_figs/hfrac05pcPm0e-3_0.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,height=0.3\textwidth]{csc_figs/Rmfrac05pcPm0e-3_0.png}
-%\caption{
-%Resolution 0.5\,pc: Upper panels show PDFs for split by warm and hot phases
-%of the Rm and Pm during the kinematic phase and the lower panels show the
-%magnetic energy, with a fit for the decay rate during the kinematic phase
-%and fractional volume of the hot gas (left) and mean Rm in the hot and 
-%warm phases for the model with $\eta=10^{-3}$.
-%\label{fig:histRm05_3}
-%}
-%\end{figure*}
-%%--------------------------------------------------------------------------
-%
-%%-------------------------------------------------------------------------
-%\begin{figure*}
-%\centering
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,height=0.3\textwidth]{csc_figs/histRm1pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,height=0.3\textwidth]{csc_figs/hfrac1pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,height=0.3\textwidth]{csc_figs/Rmfrac1pcPm0e-4_0.png}
-%\caption{
-%Resolution 1\,pc: Upper panels show PDFs for split by warm and hot phases
-%of the Rm and Pm during the kinematic phase and the lower panels show the
-%magnetic energy, with a fit for the growth rate during the kinematic phase
-%and fractional volume of the hot gas (left) and mean Rm in the hot and 
-%warm phases for the model with $\eta=10^{-4}$.
-%\label{fig:histRm1_4}
-%}
-%\end{figure*}
-%%--------------------------------------------------------------------------
-%
-%%-------------------------------------------------------------------------
-%\begin{figure*}
-%\centering
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,height=0.3\textwidth]{csc_figs/histRm1pcPm0e-3_0.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,height=0.3\textwidth]{csc_figs/histRm1pcPm0e-3_a.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,height=0.3\textwidth]{csc_figs/hfrac1pcPm0e-3_0.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,height=0.3\textwidth]{csc_figs/hfrac1pcPm0e-3_a.png}
-%\caption{
-%Resolution 1\,pc: Upper panels show PDFs for split by warm and hot phases
-%of the Rm and Pm during the low growth kinematic phase and the middle panels
-%during the high growth kinematic phase.
-%The lower panels show the magnetic energy, with a fit for the growth rate 
-%during each kinematic stage and the fractional volume of the hot gas.
-%Mean Rm does not strongly alter between each stage.
-%The model has $\eta=10^{-3}$.
-%\label{fig:histRm1_3}
-%}
-%\end{figure*}
-%%--------------------------------------------------------------------------
-%
-%%-------------------------------------------------------------------------
-%\begin{figure*}
-%\centering
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,height=0.3\textwidth]{csc_figs/histRm4pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,height=0.3\textwidth]{csc_figs/histRm4pc_h5seed.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,height=0.3\textwidth]{csc_figs/hfrac4pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.00cm 0.0cm 0.0cm,clip=true,height=0.3\textwidth]{csc_figs/hfrac4pc_10SNseed.png}
-%\caption{
-%Resolution 4\,pc: Upper panels show PDFs for model with $\sigma=50$ 
-%split by warm and hot phases
-%of the Rm and Pm during the kinematic phase and the middle panels for the
-%model with $\sigma=500$.
-%The lower panels show the magnetic energy for each, with a fit for the growth
-%rate during the kinematic stage and the fractional volume of the hot gas.
-%The models have $\eta=10^{-4}$ and 0, respectively.
-%\label{fig:histRm4_SN}
-%}
-%\end{figure*}
-%%--------------------------------------------------------------------------
-
 \section{Helmhlotz decomposition test sample}
 %-------------------------------------------------------------------------
 \begin{figure*}
@@ -1324,188 +684,8 @@ Temperature, {\bf{(f)}}, is included to show how these extrema align with ISM ph
 \end{figure*}
 %--------------------------------------------------------------------------
 
-
-%-------------------------------------------------------------------------
-\begin{figure*}
-\centering
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/efrac_hot-1e4K_pb4pcPm0e-3_3.png}
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/efrac_hot-1e4K_fV4pcPm0e-3_3.png}
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/efrac_hot-1e4K_Ma4pcPm0e-3_3.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.49\textwidth]{csc_figs/efrac_hot-1e4K_e_rot_hot4pcPm0e-3_3.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.49\textwidth]{csc_figs/efrac_hot-1e4K_e_rot_wrm4pcPm0e-3_3.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.49\textwidth]{csc_figs/efrac_hot-1e4K_e_pot_hot4pcPm0e-3_3.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.49\textwidth]{csc_figs/efrac_hot-1e4K_e_pot_wrm4pcPm0e-3_3.png}
-\caption{
-Effect of warm and hot ISM phase dynamics on dynamo with 4\,pc resolution with
-$\eta=5\cdot10^{-4}$.
-Time evolution in the warm and hot phases of mean magnetic energy density,
-panel {\bf{(a)}}, hot gas filling fraction, {\bf{(b)}},
-Mach number, {\bf{(c)}}, the ratio of rotational flow in the
-hot {\bf{(d)}} and warm {\bf{(e)}} phases and potential flow, {\bf{(f)}} and
-{\bf{(g)}}, respectively.
-$\epsilon$ measures the efficiency of the Helmholtz decomposition
-of the flow to the extent it is non-orthogonal, given by 
-$|u^2(H,W)/(u^2_\omega(H,W)+u^2_\varphi(H,W))-1|\simeq0$.
-\label{fig:4pc-phases}
-}
-\end{figure*}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure*}
-\centering
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/efrac_hot-1e4K_pb2pcPm0e-3_3.png}
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/efrac_hot-1e4K_fV2pcPm0e-3_3.png}
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/efrac_hot-1e4K_Ma2pcPm0e-3_3.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.49\textwidth]{csc_figs/efrac_hot-1e4K_e_rot_hot2pcPm0e-3_3.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.49\textwidth]{csc_figs/efrac_hot-1e4K_e_rot_wrm2pcPm0e-3_3.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.49\textwidth]{csc_figs/efrac_hot-1e4K_e_pot_hot2pcPm0e-3_3.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.49\textwidth]{csc_figs/efrac_hot-1e4K_e_pot_wrm2pcPm0e-3_3.png}
-\caption{
-Effect of warm and hot ISM phase dynamics on dynamo with 2\,pc resolution with
-$\eta=5\cdot10^{-4}$.
-Time evolution in the warm and hot phases of mean magnetic energy density,
-panel {\bf{(a)}}, hot gas filling fraction, {\bf{(b)}},
-Mach number, {\bf{(c)}}, the ratio of rotational flow in the
-hot {\bf{(d)}} and warm {\bf{(e)}} phases and potential flow, {\bf{(f)}} and
-{\bf{(g)}}, respectively.
-$\epsilon$ measures the efficiency of the Helmholtz decomposition
-of the flow to the extent it is non-orthogonal, given by 
-$|u^2(H,W)/(u^2_\omega(H,W)+u^2_\varphi(H,W))-1|\simeq0$.
-\label{fig:2pc-phases}
-}
-\end{figure*}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-\begin{figure*}
-\centering
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/efrac_hot-1e4K_pb1pcPm0e-4_0.png}
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/efrac_hot-1e4K_fV1pcPm0e-4_0.png}
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{csc_figs/efrac_hot-1e4K_Ma1pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.49\textwidth]{csc_figs/efrac_hot-1e4K_e_rot_hot1pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.49\textwidth]{csc_figs/efrac_hot-1e4K_e_rot_wrm1pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.49\textwidth]{csc_figs/efrac_hot-1e4K_e_pot_hot1pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.49\textwidth]{csc_figs/efrac_hot-1e4K_e_pot_wrm1pcPm0e-4_0.png}
-\caption{
-Effect of warm and hot ISM phase dynamics on dynamo with 1\,pc resolution with
-$\eta=10^{-4}$.
-Time evolution in the warm and hot phases of mean magnetic energy density,
-panel {\bf{(a)}}, hot gas filling fraction, {\bf{(b)}},
-Mach number, {\bf{(c)}}, the ratio of rotational flow in the
-hot {\bf{(d)}} and warm {\bf{(e)}} phases and potential flow, {\bf{(f)}} and
-{\bf{(g)}}, respectively.
-$\epsilon$ measures the efficiency of the Helmholtz decomposition
-of the flow to the extent it is non-orthogonal, given by 
-$|u^2(H,W)/(u^2_\omega(H,W)+u^2_\varphi(H,W))-1|\simeq0$.
-\label{fig:1pc-phases}
-}
-\end{figure*}
-%--------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
-%\begin{figure*}
-%\centering
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_pb1pcPm0e-0_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_pb1pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_pb1pcPm0e-3_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_pb2pcPm0e-0_02SN.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_pb2pcPm0e-4_02SN.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_pb2pcPm0e-3_02SN.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_pb4pcPm0e-0_02SN.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_pb4pcPm0e-4_02SN.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_pb4pcPm0e-3_02SN.png}
-%\caption{
-%Separation between warm and hot phase magnetic energy at 1\,pc (top), 2\,pc
-%and 4\,pc (bottom) with thermal divide set at 
-%$T=10^4$\,K, and $\eta=0,\,10^{-4}$ and $10^{-3}$, (left to right).
-%\label{fig:T-phases}
-%}
-%\end{figure*}
-%%--------------------------------------------------------------------------
-
-%%-------------------------------------------------------------------------
-%\begin{figure*}
-%\centering
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_pb2pc_h5seed.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_pb2pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_pb2pcPm0e-3_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_pb4pc_h5seed.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_pb4pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_pb4pcPm0e-3_0.png}
-%\caption{
-%Separation between warm and hot phase magnetic energy at 1\,pc (left) and 2\,pc
-%(right) with thermal divide set (tp to bottom) at 
-%$s=2.93\cdot10^9$\,erg\,g$^{-1}$\,K$^{-1}$, $T=5\cdot10^4$\,K
-%$s=10^9$ and $T=10^4$, respectively.
-%\label{fig:T-phases}
-%}
-%\end{figure*}
-%%--------------------------------------------------------------------------
-
-
-%-------------------------------------------------------------------------
-%\begin{figure*}
-%\centering
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_Ma1pcPm0e-0_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_Ma1pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_Ma1pcPm0e-3_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_Ma2pcPm0e-0_02SN.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_Ma2pcPm0e-4_02SN.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_Ma2pcPm0e-3_02SN.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_Ma4pcPm0e-0_02SN.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_Ma4pcPm0e-4_02SN.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_Ma4pcPm0e-3_02SN.png}
-%\caption{
-%Separation between warm and hot phase magnetic energy at 1\,pc (left) and 2\,pc
-%(right) with thermal divide set (tp to bottom) at 
-%$s=2.93\cdot10^9$\,erg\,g$^{-1}$\,K$^{-1}$, $T=5\cdot10^4$\,K
-%$s=10^9$ and $T=10^4$, respectively.
-%\label{fig:T-phases}
-%}
-%\end{figure*}
-%%--------------------------------------------------------------------------
-
-
-%-------------------------------------------------------------------------
-%\begin{figure*}
-%\centering
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.4\textwidth]{puhti_figs/efrac_hot-1e4K_Rm0_5pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.4\textwidth]{puhti_figs/efrac_hot-1e4K_Rm_wrm0_5pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.4\textwidth]{puhti_figs/efrac_hot-1e4K_Rm1pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.4\textwidth]{puhti_figs/efrac_hot-1e4K_Rm_wrm1pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.4\textwidth]{puhti_figs/efrac_hot-1e4K_Rm2pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.4\textwidth]{puhti_figs/efrac_hot-1e4K_Rm_wrm2pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.4\textwidth]{puhti_figs/efrac_hot-1e4K_Rm4pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.4\textwidth]{puhti_figs/efrac_hot-1e4K_Rm_wrm4pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.4\textwidth]{puhti_figs/efrac_hot-1e4K_Rm2pcPm0e-4_02SN.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.4\textwidth]{puhti_figs/efrac_hot-1e4K_Rm_wrm1pcPm0e-0_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.4\textwidth]{puhti_figs/efrac_hot-1e4K_Rm2pcPm0e-3_02SN.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.4\textwidth]{puhti_figs/efrac_hot-1e4K_Rm_wrm1pcPm0e-0_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.4\textwidth]{puhti_figs/efrac_hot-1e4K_Rm4pcPm0e-0_02SN.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.4\textwidth]{puhti_figs/efrac_hot-1e4K_Rm_wrm1pcPm0e-0_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.4\textwidth]{puhti_figs/efrac_hot-1e4K_Rm4pcPm0e-4_02SN.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.4\textwidth]{puhti_figs/efrac_hot-1e4K_Rm4pcPm0e-3_02SN.png}
-%\caption{
-%Separation between warm and hot phase magnetic energy at 1\,pc (left) and 2\,pc
-%(right) with thermal divide set (tp to bottom) at 
-%$s=2.93\cdot10^9$\,erg\,g$^{-1}$\,K$^{-1}$, $T=5\cdot10^4$\,K
-%$s=10^9$ and $T=10^4$, respectively.
-%\label{fig:T-phases}
-%}
-%\end{figure*}
 %--------------------------------------------------------------------------
 \begin{table*}[h]
-%\begin{deluxetable*}{ccl}
-%\tablenum{A1}
-%\tablecaption{Notation\label{tab:notation}}
-%\tablewidth{0pt}
-%\tablehead{
-%\colhead{Notation Symbol} & \colhead{Denoting} & \colhead{Units/Definition} 
-%\\
-%}
-%\decimalcolnumbers
-%\startdata\\
 \begin{tabular}{ccl}
 \hline\hline\\
 {Notation Symbol} & {Denoting} & {Units/Definition}\\\hline\\
@@ -1542,100 +722,57 @@ $|u^2(H,W)/(u^2_\omega(H,W)+u^2_\varphi(H,W))-1|\simeq0$.
  $\overline{e_K}$ & time-averaged kinetic energy density & [erg cm$^{-3}$]\\
 \hline
 \end{tabular}
-%\enddata
-%\tablecomments{
-%Summary of notation used in the text.}
 \end{table*}
 
-%%-------------------------------------------------------------------------
-%\begin{figure*}
-%\centering
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_Ma2pc_h5seed.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_Ma2pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_Ma2pcPm0e-3_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_Ma4pc_h5seed.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_Ma4pcPm0e-4_0.png}
-%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.33\textwidth]{puhti_figs/efrac_hot-1e4K_Ma4pcPm0e-3_0.png}
-%\caption{
-%Separation between warm and hot phase magnetic energy at 1\,pc (left) and 2\,pc
-%(right) with thermal divide set (tp to bottom) at 
-%$s=2.93\cdot10^9$\,erg\,g$^{-1}$\,K$^{-1}$, $T=5\cdot10^4$\,K
-%$s=10^9$ and $T=10^4$, respectively.
-%\label{fig:T-phases}
-%}
-%\end{figure*}
-%--------------------------------------------------------------------------
 
-\begin{table*}
-\caption{\label{tab:Rm}}
-\begin{tabular}{cccccccccc}
-\hline
-$\delta x$& $\eta$          & $\sigma$              &$ t$&$\langle$Rm$\rangle$&$\langle u_{\rm rms}\rangle$ &$\langle M_{\rm s}\rangle$ & $f_V(H)$\\
-$[\rm pc]$&[kpc km s$^{-1}$]&[kpc$^{-3}$ Myr$^{-1}$]&[Myr]   &   &    [km s$^{-1}$]&  &\\  
-\hline
-\input{meantab}
-\end{tabular}
-\end{table*}
+\section{Conclusions}\label{sec:conc}
 
-%%--------------------------------------------------------------------------
+\acknowledgments
+ {We thank O. Gressel and D. Elstner for discussions inspiring this work,
+ and the anonymous referee for comments producing substantial improvement of
+ the presentation.}
+ F.A.G. and M.J.K. acknowledge support from the Academy of Finland
+ ReSoLVE Centre of Excellence (grant 307411) and the ERC
+ under the EU's Horizon 2020 research and innovation
+ programme (Project UniSDyn, grant 818665) and generous computational
+ resources from CSC -- IT Center for Science, Finland, under Grand
+ Challenge GDYNS Project 2001062. 
+ M-M.M.L. was partly supported by US NSF grant AST18-15461.
 
-\begin{table*}\caption{\label{tab:hot}}
-\begin{tabular}{cccccccccc}
-\hline
-$\delta x$& $\eta$          & $\sigma$              &$ t$&$\langle$Rm$\rangle_{ \rm H}$&$\langle$Rm$\rangle_{ \rm W}$&$\langle u_{\rm rms}\rangle_{ \rm H}$ &$\langle u_{\rm rms}\rangle_{ \rm W}$ &$\langle M_{\rm s}\rangle_{ \rm H}$ &$\langle M_{\rm s}\rangle_{ \rm W}$\\
-$[\rm pc]$&[kpc km s$^{-1}$]&[kpc$^{-3}$ Myr$^{-1}$]&[Myr]   &   &    [km s$^{-1}$]&  &\\  
-\hline
-\input{meanhot}
-\end{tabular}
-\end{table*}
+\software{Pencil Code \citep{brandenburg2002,Pencil-JOSS}}
 
-%%--------------------------------------------------------------------------
+\bibliographystyle{aasjournal}
+\bibliography{refs}{}
+\newpage
+\section*{simulation notes}
 
-\begin{table*}\caption{\label{tab:rot}}
-\begin{tabular}{cccccccccc}
-\hline
-$\delta x$& $\eta$          & $\sigma$              &$ t$&$\langle u_{\rm rms}\rangle_{ \rm rot}$&$\langle u_{\rm rms}\rangle_{ \rm pot}$&$\langle \omega_{\rm rms}\rangle$ &$\langle \vect{A}\cdot\vect{B}\rangle$ &$\langle \vect{A}\cdot\vect{B}\rangle_{ \rm H}$ &$\langle \vect{A}\cdot\vect{B}\rangle_{ \rm W}$\\
-$[\rm pc]$&[kpc km s$^{-1}$]&[kpc$^{-3}$ Myr$^{-1}$]&[Myr]   & [km s$^{-1}$]  &    [km s$^{-1}$]& [km s$^{-1}$ kpc$^{-1}$] &\\  
-\hline
-\input{meanrot}
-\end{tabular}
-\end{table*}
-
-%--------------------------------------------------------------------------
-
-\begin{table*}
-\caption{\label{tab:Rm10}}
-\begin{tabular}{cccccccccc}
-\hline
-$\delta x$& $\eta$          & $\sigma$              &$ t$&$\langle$Rm$\rangle$&$\langle u_{\rm rms}\rangle$ &$\langle M_{\rm s}\rangle$ & $f_V(H)$\\
-$[\rm pc]$&[kpc km s$^{-1}$]&[kpc$^{-3}$ Myr$^{-1}$]&[Myr]   &   &    [km s$^{-1}$]&  &\\  
-\hline
-\input{meantab10}
-\end{tabular}
-\end{table*}
-
-%%--------------------------------------------------------------------------
-
-\begin{table*}\caption{\label{tab:hot10}}
-\begin{tabular}{cccccccccc}
-\hline
-$\delta x$& $\eta$          & $\sigma$              &$ t$&$\langle$Rm$\rangle_{ \rm H}$&$\langle$Rm$\rangle_{ \rm W}$&$\langle u_{\rm rms}\rangle_{ \rm H}$ &$\langle u_{\rm rms}\rangle_{ \rm W}$ &$\langle M_{\rm s}\rangle_{ \rm H}$ &$\langle M_{\rm s}\rangle_{ \rm W}$\\
-$[\rm pc]$&[kpc km s$^{-1}$]&[kpc$^{-3}$ Myr$^{-1}$]&[Myr]   &   &    [km s$^{-1}$]&  &\\  
-\hline
-\input{meanhot10}
-\end{tabular}
-\end{table*}
-
-%%--------------------------------------------------------------------------
-
-\begin{table*}\caption{\label{tab:rot10}}
-\begin{tabular}{cccccccccc}
-\hline
-$\delta x$& $\eta$          & $\sigma$              &$ t$&$\langle u_{\rm rms}\rangle_{ \rm rot}$&$\langle u_{\rm rms}\rangle_{ \rm pot}$&$\langle \omega_{\rm rms}\rangle$ &$\langle \vect{A}\cdot\vect{B}\rangle$ &$\langle \vect{A}\cdot\vect{B}\rangle_{ \rm H}$ &$\langle \vect{A}\cdot\vect{B}\rangle_{ \rm W}$\\
-$[\rm pc]$&[kpc km s$^{-1}$]&[kpc$^{-3}$ Myr$^{-1}$]&[Myr]   & [km s$^{-1}$]  &    [km s$^{-1}$]& [km s$^{-1}$ kpc$^{-1}$] &\\  
-\hline
-\input{meanrot10}
-\end{tabular}
-\end{table*}
+Summary of open notes from previous meetings
+\begin{itemize} 
+\item compare thermal runaway with Li \& Ostriker 
+\item include spectra during growth with time evolution (hot vs cold)
+\item use auto-correlation functions to determine typical velocity per phase
+\item see Chira et al / Mac Low
+\item compare helicity for varying local gamma
+\item Scale of dynamo forcing may not be the scale of the SN bubbles? Peak of magnetic energy spectrum may be the relevant scale
+\item Compare peak $k$ of $P_B(k)$, is $\eta\propto\ell^2$?
+\item apply Helmholtz decomposition to the total flow. Compare vorticity in hot
+phase prior to and during the dynamo epoch. Is there a jump in vorticity in the
+hot gas? How is this evolving in the warm gas related to the dynamo state? 
+Vorticity has been demonstrated to strongly affect SSD in other systems.
+\item use auto-correlation functions to determine typical velocity per phase.
+Does James' method account for the discontinuous volume of the hot gas to
+recover the relevant correlation length by phase? Check references/Anvar?
+Divide out volume correlation function from correlation function of phase?
+\item $k^{3/2}$ not obeyed at low $k$ - does this correspond to bubble size?
+Auto-correlation analysis to compare $\ell$ with bubble size $L_{\rm SN}$
+and $k$-space.
+Power laws fit well for magnetic but not kinetic.
+Is this due to two dynamos?
+Separate hot amd warm gas to investigate spectra and auto-correlation.
+\item correlation functions - divide out corr function by volume to obtain phase?
+\item include error bars for variance of orthogonality by point
+\item what is the error in div/curl
+\end{itemize}
 
 \end{document}
+
