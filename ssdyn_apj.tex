@@ -519,43 +519,88 @@ Legend labels S, M and L indicate azimuthal length $Ly=0.512,\,1.024$ and
 \begin{table*}
 \caption{\texttt{*} indicates simulation data lost}
 \begin{tabular}{lccccccc}
-Model & resolution & $\eta_3,\nu_3$ & $\nu$ & $\eta$ & $\sigma_{\rm SN}$ & \\
-\texttt{05pc\_01SNseed*} & 0.5 & 3.25$\cdot10^{-16}$ &                  &                 &  5   \\
-\texttt{05pc\_h5seed  }  & 0.5 & 3.25$\cdot10^{-16}$ &                  &                 &  50  \\
-\texttt{05pcPm0e-3.0 }   & 0.5 & 3.25$\cdot10^{-16}$ &                  & $     10^{-3}$  &  10  \\
-\texttt{05pcPm0e-3.3 }   & 0.5 & 3.25$\cdot10^{-16}$ &                  & 5$\cdot10^{-3}$ &  10  \\
-\texttt{05pcPm0e-4.0 }   & 0.5 & 3.25$\cdot10^{-16}$ &                  & $     10^{-4}$  &  10  \\
-\texttt{1pc\_01SNseed*}  & 1.0 & 3.5$\cdot10^{-15}$  &                  &                 &  20  \\
-\texttt{1pc\_h5seed   }  & 1.0 & 3.5$\cdot10^{-15}$  &                  &                 &  50  \\
-\texttt{1pcPm0e-3.0  }   & 1.0 & 3.5$\cdot10^{-15}$  &                  & $     10^{-3}$  &  10  \\
-\texttt{1pcPm0e-4.0  }   & 1.0 & 3.5$\cdot10^{-15}$  &                  & $     10^{-4}$  &  10  \\
-\texttt{1pcPm0e-5.0  }   & 1.0 & 3.5$\cdot10^{-15}$  &                  & $     10^{-5}$  &  10  \\
-\texttt{1pcPm1n-4.0* }   & 1.0 & 3.5$\cdot10^{-15}$  & $     10^{-4}$   & $     10^{-4}$  &  50  \\
-\texttt{1pcPm1n-5.0* }   & 1.0 & 3.5$\cdot10^{-15}$  & $     10^{-5}$   & $     10^{-5}$  &  50  \\
-\texttt{2pc\_01SNseed }  & 2.0 & 8.25$\cdot10^{-14}$ &                  &                 &  20  \\
-\texttt{2pc\_h5seed   }  & 2.0 & 8.25$\cdot10^{-14}$ &                  &                 &  50  \\
-\texttt{2pcPm0e-3.0  }   & 2.0 & 8.25$\cdot10^{-14}$ &                  & $     10^{-3}$  &  50  \\
-\texttt{2pcPm0e-3.3  }   & 2.0 & 8.25$\cdot10^{-14}$ &                  & 5$\cdot10^{-4}$ &  50  \\
-\texttt{2pcPm0e-4.0  }   & 2.0 & 8.25$\cdot10^{-14}$ &                  & $     10^{-4}$  &  50  \\
-\texttt{2pcPm0e-5.0  }   & 2.0 & 8.25$\cdot10^{-14}$ &                  & $     10^{-5}$  &  50  \\
-\texttt{2pcPm0e-6.0  }   & 2.0 & 8.25$\cdot10^{-14}$ &                  & $     10^{-6}$  &  50  \\
-\texttt{2pcPm1n-3.0* }   & 2.0 & 8.25$\cdot10^{-14}$ & $     10^{-3}$   & $     10^{-3}$  &  50  \\
-\texttt{2pcPm1n-3.3  }   & 2.0 & 8.25$\cdot10^{-14}$ & 5$\cdot10^{-4}$  & 5$\cdot10^{-4}$ &  50  \\
-\texttt{4pc\_01SNseed }  & 4.0 & 2$\cdot10^{-12}$    &                  &                 &  5   \\
-\texttt{4pc\_h5seed   }  & 4.0 & 2$\cdot10^{-12}$    &                  &                 &  50  \\
-\texttt{4pc\_2SNseed  }  & 4.0 & 2$\cdot10^{-12}$    &                  &                 & 100  \\
-\texttt{4pc\_5SNseed  }  & 4.0 & 2$\cdot10^{-12}$    &                  &                 & 250  \\
-\texttt{4pc\_cst5SNseed*}& 4.0 & 2$\cdot10^{-12}$    &                  &                 & 250  \\
-\texttt{4pc\_10SNseed }  & 4.0 & 2$\cdot10^{-12}$    &                  &                 & 500  \\
-\texttt{4pcPm0e-3.3  }   & 4.0 & 2$\cdot10^{-12}$    &                  & 5$\cdot10^{-3}$ &  50  \\
-\texttt{4pcPm0e-3.0  }   & 4.0 & 2$\cdot10^{-12}$    &                  & $     10^{-3}$  &  50  \\
-\texttt{4pcPm0e-3.3  }   & 4.0 & 2$\cdot10^{-12}$    &                  & 5$\cdot10^{-4}$ &  50  \\
-\texttt{4pcPm0e-3.7  }   & 4.0 & 2$\cdot10^{-12}$    &                  & 2$\cdot10^{-4}$ &  50  \\
-\texttt{4pcPm0e-4.0  }   & 4.0 & 2$\cdot10^{-12}$    &                  & $     10^{-4}$  &  50  \\
-\texttt{4pcPm0e-5.0  }   & 4.0 & 2$\cdot10^{-12}$    &                  & $     10^{-5}$  &  50  \\
-\texttt{4pcPm0e-6.0  }   & 4.0 & 2$\cdot10^{-12}$    &                  & $     10^{-6}$  &  50  \\
-\texttt{4pcPm1n-2.3  }   & 4.0 & 2$\cdot10^{-12}$    & 5$\cdot10^{-3}$  & 5$\cdot10^{-3}$ &  50  \\
-\texttt{4pcPm1n-3.7}     & 4.0 & 2$\cdot10^{-12}$    & 2$\cdot10^{-4}$  & 2$\cdot10^{-4}$ &  50    
+Model             & resolution & $\eta_3,\nu_3$      & $\nu$            & $\eta$          & $\dot\sigma$ & \\
+                  & [pc]       &                     & [kpc km s$^{-1}$]&[kpc km s$^{-1}$]&[$\dot\sigma_{\rm SN}$]& \\
+\texttt{uPm0e-0.0sn02}  & 0.5 & 3.25$\cdot10^{-16}$ &                  &                 &  0.2  \\
+\texttt{uPm0e-5.0sn02}  & 0.5 & 3.25$\cdot10^{-16}$ &                  & $     10^{-5}$  &  0.2  \\
+\texttt{uPm0e-4.0sn02}  & 0.5 & 3.25$\cdot10^{-16}$ &                  & $     10^{-4}$  &  0.2  \\
+\texttt{uPm0e-3.0sn02}  & 0.5 & 3.25$\cdot10^{-16}$ &                  & $     10^{-3}$  &  0.2  \\
+\texttt{hPm0e-0.0sn02}   & 1.0 & 3.5$\cdot10^{-15}$  &                  &                 &  0.2  \\
+\texttt{hPm0e-5.0sn02}   & 1.0 & 3.5$\cdot10^{-15}$  &                  &                 &  0.2  \\
+\texttt{hPm0e-4.0sn02}   & 1.0 & 3.5$\cdot10^{-15}$  &                  & $      10^{-3}$ &  0.2  \\
+\texttt{hPm0e-3.0sn02}   & 1.0 & 3.5$\cdot10^{-15}$  &                  & $      10^{-4}$ &  0.2  \\
+\texttt{hPm001e-4.0sn02} & 1.0 & 3.5$\cdot10^{-15}$  & $      10^{-6}$  & $      10^{-4}$ &  0.2  \\
+\texttt{hPm01e-4.0sn02  }& 1.0 & 3.5$\cdot10^{-15}$  & $      10^{-5}$  & $      10^{-4}$ &  0.2  \\
+\texttt{hPm02e-4.0sn02  }& 1.0 & 3.5$\cdot10^{-15}$  & $2\cdot10^{-5}$  & $      10^{-4}$ &  0.2  \\
+\texttt{hPm05e-4.0sn02  }& 1.0 & 3.5$\cdot10^{-15}$  & $5\cdot10^{-5}$  & $      10^{-4}$ &  0.2  \\
+\texttt{hPm02e-2.3sn02  }& 1.0 & 3.5$\cdot10^{-15}$  & $      10^{-3}$  & $5\cdot10^{-3}$ &  0.2  \\
+\texttt{hPm1e-4.0sn02  } & 1.0 & 3.5$\cdot10^{-15}$  & $      10^{-4}$  & $      10^{-4}$ &  0.2  \\
+\texttt{hPm1e-3.0sn02  } & 1.0 & 2.5$\cdot10^{-15}$  & $      10^{-3}$  & $      10^{-3}$ &  0.2  \\
+\texttt{hPm2e-3.3sn02  } & 1.0 & 2.5$\cdot10^{-15}$  & $      10^{-3}$  & $      10^{-3}$ &  0.2  \\
+\texttt{hPm5e-3.7sn02  } & 1.0 & 2.5$\cdot10^{-15}$  & $      10^{-3}$  & $5\cdot10^{-4}$ &  0.2  \\
+\texttt{hPm5e-4.0sn02  } & 1.0 & 3.5$\cdot10^{-15}$  & $5\cdot10^{-4}$  & $2\cdot10^{-4}$ &  0.2  \\
+\texttt{hPm10e-4.0sn02  }& 1.0 & 3.5$\cdot10^{-15}$  & $      10^{-3}$  & $      10^{-4}$ &  0.2  \\
+\texttt{hPm10e-4.0sn02-Z}& 1.0 & 3.5$\cdot10^{-15}$  & $      10^{-3}$  & $      10^{-4}$ &  0.2  \\
+\texttt{hPm5e-3.1sn05}   & 1.0 & 3.5$\cdot10^{-15}$  & $4\cdot10^{-3}$  & $8\cdot10^{-4}$ &  0.5  \\
+\texttt{hPm5e-3.1sn05-L} & 1.0 & 3.5$\cdot10^{-15}$  & $4\cdot10^{-3}$  & $8\cdot10^{-4}$ &  0.5  \\
+\texttt{cPm2.5e4.0sn8-B} &0.78 & 3.5$\cdot10^{-15}$  &$2.5\cdot10^{-4}$ & $      10^{-4}$ &  8.0  \\
+\texttt{cPm2.5e4.0sn8-B} &1.56 & 3.5$\cdot10^{-15}$  &$2.5\cdot10^{-4}$ & $      10^{-4}$ &  8.0  \\
+\texttt{cPm0e4.0sn8-B}   &1.56 & 3.5$\cdot10^{-15}$  &                  & $      10^{-4}$ &  8.0  
+\end{tabular}
+\end{table*}
+\begin{table*}
+\caption{\texttt{*} indicates simulation data lost}
+\begin{tabular}{lccccccc}
+Model             & resolution & $\eta_3,\nu_3$      & $\nu$            & $\eta$          & $\dot\sigma$ & \\
+                  & [pc]       &                     & [kpc km s$^{-1}$]&[kpc km s$^{-1}$]&[$\dot\sigma_{\rm SN}$]& \\
+\texttt{mPm0e-0.0sn1}    & 2.0 & 8.25$\cdot10^{-14}$ &                  &                 &  0.4 \\
+\texttt{mPm0e-0.0sn1}    & 2.0 & 8.25$\cdot10^{-14}$ &                  &                 &  1.0 \\
+\texttt{mPm0e-6.0sn1}    & 2.0 & 8.25$\cdot10^{-14}$ &                  & $     10^{-6}$  &  1.0 \\
+\texttt{mPm0e-5.0sn1}    & 2.0 & 8.25$\cdot10^{-14}$ &                  & $     10^{-5}$  &  1.0 \\
+\texttt{mPm0e-4.0sn1}    & 2.0 & 8.25$\cdot10^{-14}$ &                  & $     10^{-4}$  &  1.0 \\
+\texttt{mPm0e-3.3sn1}    & 2.0 & 8.25$\cdot10^{-14}$ &                  & 5$\cdot10^{-4}$ &  1.0 \\
+\texttt{mPm0e-3.0sn1}    & 2.0 & 8.25$\cdot10^{-14}$ &                  & $     10^{-3}$  &  1.0 \\
+\texttt{mPm0e-0.0sn02}   & 2.0 & 8.25$\cdot10^{-14}$ &                  &                 &  0.2 \\
+\texttt{mPm0e-4.0sn02}   & 2.0 & 8.25$\cdot10^{-14}$ &                  & $     10^{-4}$  &  0.2 \\
+\texttt{mPm0e-3.0sn02}   & 2.0 & 8.25$\cdot10^{-14}$ &                  & $     10^{-3}$  &  0.2 \\
+\texttt{mPm1e-4.0sn1}    & 2.0 & 8.25$\cdot10^{-14}$ & $     10^{-4}$   & $     10^{-4}$  &  1.0 \\
+\texttt{mPm1e-4.0sn02}   & 2.0 & 8.25$\cdot10^{-14}$ & $     10^{-4}$   & $     10^{-4}$  &  0.2 \\
+\texttt{mPm1e-4.0sn02-B} & 2.0 & 8.25$\cdot10^{-14}$ & $     10^{-4}$   & $     10^{-4}$  &  0.2 \\
+\texttt{mPm05e-4.0sn1}   & 2.0 & 8.25$\cdot10^{-14}$ & 5$\cdot10^{-5}$  & $     10^{-4}$  &  1.0 \\
+\texttt{mPm05e-4.0sn02}  & 2.0 & 8.25$\cdot10^{-14}$ & 5$\cdot10^{-5}$  & $     10^{-4}$  &  0.2 \\
+\texttt{mPm02e-4.0sn1}   & 2.0 & 8.25$\cdot10^{-14}$ & 2$\cdot10^{-5}$  & $     10^{-4}$  &  1.0 \\
+\texttt{mPm02e-4.0sn02}  & 2.0 & 8.25$\cdot10^{-14}$ & 2$\cdot10^{-5}$  & $     10^{-4}$  &  0.2 \\
+\texttt{mPm01e-4.0sn1}   & 2.0 & 8.25$\cdot10^{-14}$ & $     10^{-5}$   & $     10^{-4}$  &  1.0 \\
+\texttt{mPm01e-4.0sn02}  & 2.0 & 8.25$\cdot10^{-14}$ &       $10^{-5}$  & $     10^{-4}$  &  0.2 
+\end{tabular}
+\end{table*}
+\begin{table*}
+\caption{\texttt{*} indicates simulation data lost}
+\begin{tabular}{lccccccc}
+Model            & resolution & $\eta_3,\nu_3$      & $\nu$            & $\eta$          & $\dot\sigma$  \\
+                 & [pc]       &                     & [kpc km s$^{-1}$]&[kpc km s$^{-1}$]&[$\dot\sigma_{\rm SN}$] \\
+\texttt{lPm0e-0.0sn01}  & 4.0 & 2$\cdot10^{-12}$    &                  &                 & 0.1  \\
+\texttt{lPm0e-0.0sn2}   & 4.0 & 2$\cdot10^{-12}$    &                  &                 & 2.0  \\
+\texttt{lPm0e-0.0sn5}   & 4.0 & 2$\cdot10^{-12}$    &                  &                 & 5.0  \\
+\texttt{lPm0e-0.0sn10}  & 4.0 & 2$\cdot10^{-12}$    &                  &                 & 10.0 \\
+\texttt{lPm0e-0.0sn1}   & 4.0 & 2$\cdot10^{-12}$    &                  &                 &  1.0 \\
+\texttt{lPm0e-6.0sn1}   & 4.0 & 2$\cdot10^{-12}$    &                  & $     10^{-6}$  &  1.0 \\
+\texttt{lPm0e-5.0sn1}   & 4.0 & 2$\cdot10^{-12}$    &                  & $     10^{-5}$  &  1.0 \\
+\texttt{lPm0e-4.0sn1}   & 4.0 & 2$\cdot10^{-12}$    &                  & $     10^{-4}$  &  1.0 \\
+\texttt{lPm0e-3.7sn1}   & 4.0 & 2$\cdot10^{-12}$    &                  & 2$\cdot10^{-4}$ &  1.0 \\
+\texttt{lPm0e-3.3sn1}   & 4.0 & 2$\cdot10^{-12}$    &                  & 5$\cdot10^{-3}$ &  1.0 \\
+\texttt{lPm0e-3.0sn1}   & 4.0 & 2$\cdot10^{-12}$    &                  & $     10^{-3}$  &  1.0 \\
+\texttt{lPm0e-3.3sn1}   & 4.0 & 2$\cdot10^{-12}$    &                  & 5$\cdot10^{-4}$ &  1.0 \\
+\texttt{lPm0e-2.3sn1}   & 4.0 & 2$\cdot10^{-12}$    & 5$\cdot10^{-3}$  & 5$\cdot10^{-3}$ &  1.0 \\
+\texttt{lPm1e-4.0sn1}   & 4.0 & 2$\cdot10^{-12}$    &       $10^{-4}$  &       $10^{-4}$ &  1.0 \\    
+\texttt{lPm1e-4.0sn02}  & 4.0 & 2$\cdot10^{-12}$    &       $10^{-4}$  &       $10^{-4}$ & 0.2  \\    
+\texttt{lPm05e-4.0sn1}  & 4.0 & 2$\cdot10^{-12}$    & 5$\cdot10^{-5}$  &       $10^{-4}$ &  1.0 \\    
+\texttt{lPm05e-4.0sn02} & 4.0 & 2$\cdot10^{-12}$    & 5$\cdot10^{-5}$  &       $10^{-4}$ & 0.2  \\    
+\texttt{lPm02e-4.0sn1}  & 4.0 & 2$\cdot10^{-12}$    & 2$\cdot10^{-5}$  &       $10^{-4}$ &  1.0 \\    
+\texttt{lPm02e-4.0sn02} & 4.0 & 2$\cdot10^{-12}$    & 2$\cdot10^{-5}$  &       $10^{-4}$ & 0.2  \\    
+\texttt{lPm01e-4.0sn1}  & 4.0 & 2$\cdot10^{-12}$    &       $10^{-5}$  &       $10^{-4}$ &  1.0 \\    
+\texttt{lPm01e-4.0sn02} & 4.0 & 2$\cdot10^{-12}$    &       $10^{-5}$  &       $10^{-4}$ & 0.2  \\    
+\texttt{lPm5e-3.1sn05-S}& 4.0 & 2$\cdot10^{-12}$    & 4$\cdot10^{-3}$  & 8$\cdot10^{-4}$ & 0.5      
 \end{tabular}
 \end{table*}
 
