@@ -508,17 +508,48 @@ Sect.\,\ref{sec:ssd-tang} solves only Equations~\eqref{eq:mass},
  \citep{Gent:2013b} following \citet{Wolfire:1995} and \citet{Sarazin:1987}.
 
 %-------------------------------------------------------------------------
-\begin{figure*}
+\begin{figure}
 \centering
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.47\textwidth]{csc_figs/sn_dx.png}
-\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.47\textwidth]{csc_figs/sn4pc.png}
-\caption{
-Effect of supernova rate, $\sigma_{\rm SN}$ [kpc$^{-3}$Myr$^{-1}$], at various
-spatial resolution. Panel (b) 4\,pc with $\sigma_{\rm SN} \in[5,502]$.
-{Remember to comment that we compared constant heating vs \citet{Wolfire:1995} et al and this was not significant.}
-\label{fig:brms_SNrate}
+\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.47\textwidth]{csc_figs/eB-comp.pdf}
+%\includegraphics[trim=0.0cm 0.0cm 0.0cm 0.0cm,clip=true,width=0.47\textwidth]{csc_figs/sn4pc.png}
+  \begin{picture}(0,0)(0,0)
+  %  \put(-452,544){{\sf{$\delta x=0.5$}}}
+  %  \put(-452,531){{\sf{$\dot\sigma=\frac{1}{5}\SNr$}}}
+  %  \put(-205,544){{\sf{$\delta x=1$}}}
+  %  \put(-205,531){{\sf{$\nu=10^{-3}$}}}
+  %  \put(-205,518){{\sf{$\dot\sigma=\frac{1}{5}\SNr$}}}
+  %  \put(-452,415){{\sf{$\delta x=1$}}}
+  %  \put(-452,402){{\sf{$\dot\sigma=\frac{1}{5}\SNr$}}}
+  %  \put(-205,415){{\sf{$\delta x=1$}}}
+  %  \put(-205,402){{\sf{$\eta=10^{-4}$}}}
+  %  \put(-205,389){{\sf{$\dot\sigma=\frac{1}{5}\SNr$}}}
+  %  \put(-452,260){{\sf{$\delta x=2$}}}
+  %  \put(-452,247){{\sf{$\dot\sigma=\frac{1}{5}\SNr$}}}
+  %  \put(-205,260){{\sf{$\delta x=4$}}}
+  %  \put(-205,247){{\sf{$\dot\sigma=\frac{1}{5}\SNr$}}}
+  %  \put(-452,133){{\sf{$\delta x=2$}}}
+  %  \put(-452,120){{\sf{$\dot\sigma=\SNr$}}}
+  %  \put(-205,133){{\sf{$\delta x=4$}}}
+  %  \put(-205,120){{\sf{$\dot\sigma=\SNr$}}}
+    \put(-115,370){{\sf\bf{(a)}}}
+    \put(-115,248){{\sf\bf{(b)}}}
+    \put(-115,127){{\sf\bf{(c)}}}
+  \end{picture}
+\caption{Models with (a) higher resolution, $\dx$, and SN rate, $\dot\sigma$
+indicated in the legends are well resolved with resistivity,
+$\eta\simeq10^{-3}$. The simulation domain is 256 pc on all sides, except model
+indicate by L, which is 1024 pc along one edge. The SSD is not enhanced by 
+the increase in size, although growth is less sporadic.
+Resolution $\dx=2\pc$ (b) shows sustained SSD only for a higher SN rate with
+much slower growth rate than the high resolution models.
+For resolution $\dx=4\pc$ (c) growth of the SSD is impeded in the unstratified
+models, but for the stratified system, denoted with S in the legend the SSD
+is faster, even with a modest SN rate of $0.5\sigma_{\rm SN}$.
+Large scale rotation and shear are also absent from the stratified model, to
+exclude the LSD.
+\label{fig:brms_rate}
 }
-\end{figure*}
+\end{figure}
 %-------------------------------------------------------------------------
 
 %-------------------------------------------------------------------------
@@ -605,13 +636,15 @@ Model            & resolution & $\eta_3,\nu_3$      & $\nu$            & $\eta$ 
 \texttt{lPm0e-0.0sn5}   & 4.0 & 2$\cdot10^{-12}$    &                  &                 & 5.0  \\
 \texttt{lPm0e-0.0sn10}  & 4.0 & 2$\cdot10^{-12}$    &                  &                 & 10.0 \\
 \texttt{lPm0e-0.0sn1}   & 4.0 & 2$\cdot10^{-12}$    &                  &                 &  1.0 \\
+\texttt{lPm0e-0.0sn02}  & 4.0 & 2$\cdot10^{-12}$    &                  &                 &  0.2 \\
 \texttt{lPm0e-6.0sn1}   & 4.0 & 2$\cdot10^{-12}$    &                  & $     10^{-6}$  &  1.0 \\
 \texttt{lPm0e-5.0sn1}   & 4.0 & 2$\cdot10^{-12}$    &                  & $     10^{-5}$  &  1.0 \\
 \texttt{lPm0e-4.0sn1}   & 4.0 & 2$\cdot10^{-12}$    &                  & $     10^{-4}$  &  1.0 \\
+\texttt{lPm0e-4.0sn02}  & 4.0 & 2$\cdot10^{-12}$    &                  & $     10^{-4}$  &  0.2 \\
 \texttt{lPm0e-3.7sn1}   & 4.0 & 2$\cdot10^{-12}$    &                  & 2$\cdot10^{-4}$ &  1.0 \\
-\texttt{lPm0e-3.3sn1}   & 4.0 & 2$\cdot10^{-12}$    &                  & 5$\cdot10^{-3}$ &  1.0 \\
-\texttt{lPm0e-3.0sn1}   & 4.0 & 2$\cdot10^{-12}$    &                  & $     10^{-3}$  &  1.0 \\
 \texttt{lPm0e-3.3sn1}   & 4.0 & 2$\cdot10^{-12}$    &                  & 5$\cdot10^{-4}$ &  1.0 \\
+\texttt{lPm0e-3.0sn1}   & 4.0 & 2$\cdot10^{-12}$    &                  & $     10^{-3}$  &  1.0 \\
+\texttt{lPm0e-3.0sn02}  & 4.0 & 2$\cdot10^{-12}$    &                  & $     10^{-3}$  &  0.2 \\
 \texttt{lPm0e-2.3sn1}   & 4.0 & 2$\cdot10^{-12}$    & 5$\cdot10^{-3}$  & 5$\cdot10^{-3}$ &  1.0 \\
 \texttt{lPm1e-4.0sn1}   & 4.0 & 2$\cdot10^{-12}$    &       $10^{-4}$  &       $10^{-4}$ &  1.0 \\    
 \texttt{lPm1e-4.0sn02}  & 4.0 & 2$\cdot10^{-12}$    &       $10^{-4}$  &       $10^{-4}$ & 0.2  \\    
